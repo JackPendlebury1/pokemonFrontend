@@ -66,9 +66,8 @@ function Dashboard() {
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favouritePokemon = async (index) => {
-        let favourite_index = index
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}users/${Cookies.get("id")}/favourites`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: JSON.stringify(favourite_index) });
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index : ${index}"}` });
         if (response.ok) {
             isOpen()
         } else {

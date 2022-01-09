@@ -35,8 +35,8 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favourites.index_id.forEach(async e => {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e, {
+        favourites.forEach(async e => {
+            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
             if (!response.ok) {
