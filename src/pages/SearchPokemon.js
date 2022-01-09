@@ -39,7 +39,7 @@ export default function SearchPokemon() {
 
     const favourite = async () => {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}users/${Cookies.get("id")}/favourites`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index" : "${index}"}` });
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index" : ${index}}` });
         if (response.ok) {
             isOpen()
         } else {
