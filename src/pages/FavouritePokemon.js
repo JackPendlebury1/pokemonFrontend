@@ -28,7 +28,6 @@ export default function FavouritePokemon() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [favourites, setFavourites] = useState([]);
     const [show, toggleShow] = useState(false);
-    let favouriteList = []
 
 
     const unfavourite = (index) => {
@@ -37,8 +36,8 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favouriteList.map(async e => {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e, {
+        // favourites.map(async e => {
+            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + 1, {
                 method: 'GET',
             })
             if (!response.ok) {
@@ -48,7 +47,7 @@ export default function FavouritePokemon() {
                 setAllData(old => [...old, data])
                 toggleShow(true)
             }
-        });
+        // });
     }
 
     const fetchFavourites = async () => {
@@ -61,11 +60,6 @@ export default function FavouritePokemon() {
         if (response.status === 200) {
             let data = await response.json();
             setFavourites(data)
-            favourites.map(e => {
-                console.log(e)
-                favouriteList.push(e.favourite_index)
-            }
-                )
         } else {
             console.error("Cannot Find Favourites")
         }
