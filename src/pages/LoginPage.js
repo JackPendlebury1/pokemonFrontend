@@ -36,7 +36,7 @@ export default function SimpleCard() {
       } = useForm()
 
     const onSubmit = async (values) => {
-        formData.append('email', values.email);
+        formData.append('username', values.email);
         formData.append('password', values.password);
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}token`, { method: 'POST', body: formData });
         if (response.status === 200) {
