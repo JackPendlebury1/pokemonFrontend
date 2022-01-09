@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'
+import Footer from './components/Footer';
+import { Routes } from './Routes'
+import NavBar from './components/NavBar'
+import { ChakraProvider, Box } from '@chakra-ui/react'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ChakraProvider>
+        <NavBar isLoggedIn={isLoggedIn} />
+        <Box p={10}>
+          <Routes />
+        </Box>
+        <Footer />
+      </ChakraProvider>
+    </Router>
   );
 }
 
