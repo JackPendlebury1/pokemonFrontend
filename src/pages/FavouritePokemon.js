@@ -61,7 +61,7 @@ export default function FavouritePokemon() {
         if (response.status === 200) {
             let data = await response.json();
             setFavourites(data)
-            favourites.map(async e => {
+            favourites.map(e => {
                 console.log(e)
                 favouriteList.push(e.favourite_index)
             }
