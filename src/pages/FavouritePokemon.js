@@ -37,8 +37,8 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        console.log("im in")
-        favouriteList.forEach(async e => {
+        console.log(favouriteList)
+        favouriteList.forEach(e => {
             const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e, {
                 method: 'GET',
             })
@@ -69,13 +69,11 @@ export default function FavouritePokemon() {
     }
 
     useEffect(() => {
-        console.log("running fetch favourites")
         fetchFavourites();
         favourites.forEach(async e => {
             setFavouriteList(old => [...old, e.favourite_index])
         }
             )
-        console.log("running fetch all")
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
