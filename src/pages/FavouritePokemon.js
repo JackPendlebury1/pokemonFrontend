@@ -63,11 +63,12 @@ export default function FavouritePokemon() {
         } else {
             console.error("Cannot Find Favourites")
         }
+        fetchDataAll();
     }
 
     useEffect(() => {
         fetchFavourites();
-        fetchDataAll();
+        
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     return (
