@@ -37,7 +37,7 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favouriteList.forEach(async e => {
+        favouriteList.map(async e => {
             const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e, {
                 method: 'GET',
             })
@@ -61,7 +61,7 @@ export default function FavouritePokemon() {
         if (response.status === 200) {
             let data = await response.json();
             setFavourites(data)
-            favourites.forEach(async e => {
+            favourites.map(async e => {
                 console.log(e)
                 favouriteList.push(e.favourite_index)
             }
