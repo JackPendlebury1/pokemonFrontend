@@ -27,8 +27,8 @@ export default function FavouritePokemon() {
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [favourites, setFavourites] = useState([]);
-    const [favouriteList, setFavouriteList] = useState([]);
     const [show, toggleShow] = useState(false);
+    let favouriteList = []
 
 
     const unfavourite = (index) => {
@@ -72,7 +72,8 @@ export default function FavouritePokemon() {
         console.log("running fetch favourites")
         fetchFavourites();
         favourites.forEach(async e => {
-            setFavouriteList(old => [...old, e.favourite_index])
+            console.log(e)
+            favouriteList.push(e.favourite_index)
         }
             )
         console.log("running fetch all")
