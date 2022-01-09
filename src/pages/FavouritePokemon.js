@@ -27,7 +27,9 @@ export default function FavouritePokemon() {
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [favourites, setFavourites] = useState([]);
+    const [favouriteList, setFavouriteList] = useState([]);
     const [show, toggleShow] = useState(false);
+
 
     const unfavourite = (index) => {
         console.log("removed from favourites" + index)
@@ -35,8 +37,9 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favourites.forEach(async e => {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
+        console.log("im in")
+        favouriteList.forEach(async e => {
+            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e, {
                 method: 'GET',
             })
             if (!response.ok) {
@@ -58,7 +61,6 @@ export default function FavouritePokemon() {
         });
         if (response.status === 200) {
             let data = await response.json();
-            console.log(data)
             setFavourites(data)
         } else {
             console.error("Cannot Find Favourites")
@@ -69,6 +71,10 @@ export default function FavouritePokemon() {
     useEffect(() => {
         console.log("running fetch favourites")
         fetchFavourites();
+        favourites.forEach(async e => {
+            setFavouriteList(old => [...old, e.favourite_index])
+        }
+            )
         console.log("running fetch all")
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
