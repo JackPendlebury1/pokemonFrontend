@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-const Links = ['Home', 'About Me', 'Help'];
+const Links = ['Home', 'About Me', 'Read Me'];
 
 const NavLink = ({ children }) => (
   <Link
