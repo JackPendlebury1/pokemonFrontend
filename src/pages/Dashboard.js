@@ -72,7 +72,7 @@ function Dashboard() {
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favouritePokemon = async (index) => {
-        formData.append('favourite_index', index);
+        formData.append('favourite_index', parseInt(index));
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body:  formData});
         if (response2.ok) {
