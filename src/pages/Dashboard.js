@@ -36,7 +36,6 @@ function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
-    const formData = new FormData();
     
     const fetchDataAll = async (url) => {
 
@@ -72,9 +71,8 @@ function Dashboard() {
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favouritePokemon = async (index) => {
-        formData.append('favourite_index', parseInt(index));
-        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body:  formData});
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${id}`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }});
         if (response2.ok) {
             onOpen()
         } else if (response2.status === 400) {

@@ -18,7 +18,6 @@ export default function SearchPokemon() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [newIndex, setNewIndex] = useState(parseInt(index))
     const [show1, toggleShow1] = useState(false)
-    const formData = new FormData();
 
     const handleClick = async () => {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + newIndex, {
@@ -38,9 +37,8 @@ export default function SearchPokemon() {
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favourite = async (id) => {
-        formData.append('favourite_index', id);
-        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: formData });
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${id}`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }});
         if (response2.ok) {
             isOpen()
         } else if (response2.status === 400) {
