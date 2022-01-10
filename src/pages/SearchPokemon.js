@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Box, Image, Grid, GridItem, Container, Progress, Heading, Text, SimpleGrid, Tag, TagLabel, Stack, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Spacer } from '@chakra-ui/react'
+import {
+    Button, Box, Image, Grid, GridItem, Container, Progress, Heading, Text, SimpleGrid, Tag, TagLabel, Stack, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Spacer,
+    chakra,
+    Icon,
+    Flex
+} from '@chakra-ui/react'
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { BsLightningFill } from "react-icons/bs";
 
 export default function SearchPokemon() {
     const [pokemon, setPokemon] = useState([])
@@ -11,15 +17,10 @@ export default function SearchPokemon() {
     const { index } = useParams();
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [newIndex, setNewIndex] = useState(parseInt(index))
+    const [show1, toggleShow1] = useState(false)
 
     const handleClick = async () => {
-        let url
-        if (typeof (index) === 'string') {
-            url = 'https://pokeapi.co/api/v2/pokemon/' + index
-        } else {
-            url = 'https://pokeapi.co/api/v2/pokemon/' + newIndex
-        }
-        const response = await fetch(url, {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + newIndex, {
             method: 'GET',
         })
         if (!response.ok) {
@@ -32,18 +33,16 @@ export default function SearchPokemon() {
     }
 
     useEffect(() => {
-
-
         handleClick();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favourite = async () => {
-        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}users/${Cookies.get("id")}/favourites/`,
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/${Cookies.get("id")}/favourites/`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index" : ${index}}` });
-        if (response.ok) {
+        if (response2.ok) {
             isOpen()
-        } else {
-            console.error("could not save to favourites")
+        } else if (response2.status === 400) {
+            toggleShow1(true)
         }
     }
 
@@ -54,6 +53,41 @@ export default function SearchPokemon() {
 
     return (
         <>
+             {show1 && <Flex
+      w="full"
+      bg="gray.600"
+      p={50}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Flex
+        maxW="sm"
+        w="full"
+        mx="auto"
+        shadow="md"
+        rounded="lg"
+        overflow="hidden"
+      >
+        <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
+          <Icon as={BsLightningFill} color="white" boxSize={6} />
+        </Flex>
+
+        <Box mx={-3} py={2} px={4}>
+          <Box mx={3}>
+            <chakra.span
+              fontWeight="bold"
+            >
+              Error
+            </chakra.span>
+            <chakra.p
+              fontSize="sm"
+            >
+              You have already favourited this pokemon!
+            </chakra.p>
+          </Box>
+        </Box>
+      </Flex>
+    </Flex>}
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -117,10 +151,16 @@ export default function SearchPokemon() {
                                 <SimpleGrid columns={2}>
                                     <Container>
                                         <Text>
+                                            ID : {pokemon.id}
+                                        </Text>
+                                        <Text>
                                             Weight : {pokemon.weight}
                                         </Text>
                                         <Text>
                                             Base Experience : {pokemon.base_experience}
+                                        </Text>
+                                        <Text>
+                                            Base Height : {pokemon.height}
                                         </Text>
                                     </Container>
                                     <Container>

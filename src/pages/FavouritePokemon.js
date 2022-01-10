@@ -29,20 +29,30 @@ export default function FavouritePokemon() {
     const [favourites, setFavourites] = useState([]);
     const [show, toggleShow] = useState(false);
 
-    const unfavourite = (index) => {
-        console.log("removed from favourites" + index)
-        onOpen()
+    const unfavourite = async (index) => {
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
+            method: 'GET',
+            headers: {
+                "Authorization": Cookies.get("login")
+            }
+        });
+        if (response2.status === 200) {
+            onOpen()
+        } else {
+            console.error("Cannot Find Favourites")
+        }
+
     }
 
     const fetchDataAll = async () => {
         favourites.map(async e => {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
+            const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
-            if (!response.ok) {
+            if (!response1.ok) {
                 console.log("something failed")
             } else {
-                let data = await response.json();
+                let data = await response1.json();
                 setAllData(old => [...old, data])
                 toggleShow(true)
             }
@@ -64,7 +74,7 @@ export default function FavouritePokemon() {
         } else {
             console.error("Cannot Find Favourites")
         }
-        
+
     }
 
     useEffect(() => {
@@ -101,7 +111,6 @@ export default function FavouritePokemon() {
                     <SimpleGrid columns={3} spacing={5}>
 
                         {AllData?.map(pokemon => {
-                            let index = pokemon.name
                             return (
                                 <>
                                     <Center py={6}>
@@ -134,7 +143,7 @@ export default function FavouritePokemon() {
                                                     {pokemon.name}
                                                 </Heading>
                                                 <HStack >
-                                                    <Button onClick={() => unfavourite(index)}
+                                                    <Button onClick={() => unfavourite(pokemon.index)}
                                                         boxShadow={
                                                             '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
                                                         }
@@ -147,7 +156,7 @@ export default function FavouritePokemon() {
                                                         leftIcon={<StarIcon />}>
                                                         Unfavorite
                                                     </Button>
-                                                    <Link to={`/dashboard/search/${index}`}>
+                                                    <Link to={`/dashboard/search/${pokemon.index}`}>
 
                                                         <Button
                                                         >

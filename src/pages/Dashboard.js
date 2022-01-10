@@ -17,10 +17,14 @@ import {
     useDisclosure,
     HStack,
     Spacer,
+    chakra,
+    Box,
+    Icon,
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { BsLightningFill } from "react-icons/bs";
 
 
 function Dashboard() {
@@ -31,6 +35,7 @@ function Dashboard() {
     const url = "https://pokeapi.co/api/v2/pokemon?limit=" + limitAmount + "&offset=" + offsetAmount
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
+    const [show, toggleShow] = useState(false);
 
     const fetchDataAll = async (url) => {
 
@@ -48,16 +53,16 @@ function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
+            const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
                 method: 'GET',
                 headers: {
                     "Authorization": Cookies.get("login")
                 }
             })
-            if (!response.ok) {
+            if (!response1.ok) {
                 history.push("/");
             } else {
-                let data = await response.json();
+                let data = await response1.json();
                 Cookies.set("id", data.id, { sameSite: 'Strict' })
             }
         }
@@ -70,8 +75,8 @@ function Dashboard() {
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index" : ${index}}` });
         if (response.ok) {
             isOpen()
-        } else {
-            console.error("could not save to favourites")
+        } else if (response.status === 400) {
+            toggleShow(true)
         }
     }
 
@@ -85,6 +90,42 @@ function Dashboard() {
 
     return (
         <>
+            {show && <Flex
+                w="full"
+                bg="gray.600"
+                p={50}
+                alignItems="center"
+                justifyContent="center"
+            >
+                <Flex
+                    maxW="sm"
+                    w="full"
+                    mx="auto"
+                    shadow="md"
+                    rounded="lg"
+                    overflow="hidden"
+                >
+                    <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
+                        <Icon as={BsLightningFill} color="white" boxSize={6} />
+                    </Flex>
+
+                    <Box mx={-3} py={2} px={4}>
+                        <Box mx={3}>
+                            <chakra.span
+                                fontWeight="bold"
+                            >
+                                Error
+                            </chakra.span>
+                            <chakra.p
+                                fontSize="sm"
+                            >
+                                You have already favourited this pokemon!
+                            </chakra.p>
+                        </Box>
+                    </Box>
+                </Flex>
+            </Flex>}
+            
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
