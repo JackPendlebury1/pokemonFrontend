@@ -15,7 +15,6 @@ function App() {
         <Box p={10}>
           <Routes />
         </Box>
-        <Footer />
       </ChakraProvider>
     </Router>
   );

@@ -76,7 +76,7 @@ export default function SimpleCard() {
                     <Stack align={'center'}>
                         <Heading fontSize={'4xl'}>Sign in to your account</Heading>
                         <Text fontSize={'lg'} color={'gray.600'}>
-                            to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+                            to enjoy all of the cool pokemon
                         </Text>
                     </Stack>
                     <Box

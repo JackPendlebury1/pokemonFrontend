@@ -79,7 +79,7 @@ export default function SignupCard() {
                             Sign up
                         </Heading>
                         <Text fontSize={'lg'} color={'gray.600'}>
-                            to enjoy all of our cool features ✌️
+                            to enjoy all of the cool pokemon 🥰
                         </Text>
                     </Stack>
 
