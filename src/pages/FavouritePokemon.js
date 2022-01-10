@@ -26,8 +26,10 @@ export default function FavouritePokemon() {
 
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [favourites, setFavourites] = useState([]);
+    // const [favourites, setFavourites] = useState();
     const [show, toggleShow] = useState(false);
+    let favouritesList = [{"favourite_index":5,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":6,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":8,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":7,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":11,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":1,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":2,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"}]
+
 
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
@@ -45,7 +47,7 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favourites.map(async e => {
+        favouritesList.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
@@ -68,9 +70,8 @@ export default function FavouritePokemon() {
         });
         if (response.status === 200) {
             let data = await response.json();
-            await setFavourites(data)
+            favouritesList = data
             fetchDataAll();
-            setFavourites()
         } else {
             console.error("Cannot Find Favourites")
         }
@@ -79,6 +80,7 @@ export default function FavouritePokemon() {
 
     useEffect(() => {
         fetchFavourites();
+        fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     return (

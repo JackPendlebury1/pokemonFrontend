@@ -37,7 +37,7 @@ function Dashboard() {
     const history = useHistory();
     const [show, toggleShow] = useState(false);
     const formData = new FormData();
-
+    
     const fetchDataAll = async (url) => {
 
         const response = await fetch(url, {
@@ -76,7 +76,7 @@ function Dashboard() {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body:  formData});
         if (response2.ok) {
-            isOpen()
+            onOpen()
         } else if (response2.status === 400) {
             toggleShow(true)
         }
