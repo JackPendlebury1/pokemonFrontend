@@ -60,6 +60,7 @@ export default function FavouritePokemon() {
             let data = await response.json();
             await setFavourites(data)
             fetchDataAll();
+            setFavourites()
         } else {
             console.error("Cannot Find Favourites")
         }
