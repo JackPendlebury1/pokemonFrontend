@@ -77,6 +77,7 @@ function Dashboard() {
             onOpen()
         } else if (response2.status === 400) {
             toggleShow(true)
+            setTimeout(() => {  toggleShow(false) }, 4000);
         }
     }
 

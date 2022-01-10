@@ -43,6 +43,8 @@ export default function SearchPokemon() {
             onOpen()
         } else if (response2.status === 400) {
             toggleShow1(true)
+            setTimeout(() => {  toggleShow1(false) }, 4000);
+
         }
     }
 
@@ -53,13 +55,7 @@ export default function SearchPokemon() {
 
     return (
         <>
-            {show1 && <Flex
-                w="full"
-                bg="gray.600"
-                p={50}
-                alignItems="center"
-                justifyContent="center"
-            >
+            {show1 && 
                 <Flex
                     maxW="sm"
                     w="full"
@@ -86,7 +82,6 @@ export default function SearchPokemon() {
                             </chakra.p>
                         </Box>
                     </Box>
-                </Flex>
             </Flex>}
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
