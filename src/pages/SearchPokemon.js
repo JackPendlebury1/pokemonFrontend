@@ -40,7 +40,7 @@ export default function SearchPokemon() {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${id}`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }});
         if (response2.ok) {
-            isOpen()
+            onOpen()
         } else if (response2.status === 400) {
             toggleShow1(true)
         }

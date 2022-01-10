@@ -90,13 +90,7 @@ function Dashboard() {
 
     return (
         <>
-            {show && <Flex
-                w="full"
-                bg="gray.600"
-                p={50}
-                alignItems="center"
-                justifyContent="center"
-            >
+            {show && 
                 <Flex
                     maxW="sm"
                     w="full"
@@ -123,7 +117,6 @@ function Dashboard() {
                             </chakra.p>
                         </Box>
                     </Box>
-                </Flex>
             </Flex>}
             
             <Modal isOpen={isOpen} onClose={onClose}>
