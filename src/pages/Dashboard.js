@@ -78,7 +78,7 @@ function Dashboard() {
         if (response2.ok) {
             isOpen()
         } else if (response2.status === 400) {
-            toggleShow1(true)
+            toggleShow(true)
         }
     }
 
