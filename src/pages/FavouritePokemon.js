@@ -26,7 +26,6 @@ export default function FavouritePokemon() {
 
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
-    // const [favourites, setFavourites] = useState();
     const [show, toggleShow] = useState(false);
     let favouritesList = [{"favourite_index":5,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":6,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":8,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":7,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":11,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":1,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":2,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"}]
 
@@ -145,7 +144,7 @@ export default function FavouritePokemon() {
                                                     {pokemon.name}
                                                 </Heading>
                                                 <HStack >
-                                                    <Button onClick={() => unfavourite(pokemon.index)}
+                                                    <Button onClick={() => unfavourite(pokemon.id)}
                                                         boxShadow={
                                                             '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
                                                         }
@@ -158,7 +157,7 @@ export default function FavouritePokemon() {
                                                         leftIcon={<StarIcon />}>
                                                         Unfavorite
                                                     </Button>
-                                                    <Link to={`/dashboard/search/${pokemon.index}`}>
+                                                    <Link to={`/dashboard/search/${pokemon.id}`}>
 
                                                         <Button
                                                         >

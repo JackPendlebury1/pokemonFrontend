@@ -37,8 +37,8 @@ export default function SearchPokemon() {
         handleClick();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
-    const favourite = async () => {
-        formData.append('favourite_index', index);
+    const favourite = async (id) => {
+        formData.append('favourite_index', id);
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: formData });
         if (response2.ok) {
@@ -116,7 +116,7 @@ export default function SearchPokemon() {
                             </Button>
                         </Link>
 
-                        <Button leftIcon={<StarIcon />} onClick={() => favourite()} colorScheme='teal' variant='solid'>
+                        <Button leftIcon={<StarIcon />} onClick={() => favourite(pokemon.id)} colorScheme='teal' variant='solid'>
                             Favourite
                         </Button>
                         <Spacer></Spacer>
