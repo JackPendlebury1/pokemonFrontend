@@ -32,7 +32,7 @@ export default function FavouritePokemon() {
 
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 "Authorization": Cookies.get("login")
             }
