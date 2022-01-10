@@ -18,6 +18,7 @@ export default function SearchPokemon() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [newIndex, setNewIndex] = useState(parseInt(index))
     const [show1, toggleShow1] = useState(false)
+    const formData = new FormData();
 
     const handleClick = async () => {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + newIndex, {
@@ -37,8 +38,9 @@ export default function SearchPokemon() {
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
     const favourite = async () => {
-        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/${Cookies.get("id")}/favourites/`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: `{"favourite_index" : ${index}}` });
+        formData.append('favourite_index', index);
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/`,
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }, body: formData });
         if (response2.ok) {
             isOpen()
         } else if (response2.status === 400) {
@@ -53,41 +55,41 @@ export default function SearchPokemon() {
 
     return (
         <>
-             {show1 && <Flex
-      w="full"
-      bg="gray.600"
-      p={50}
-      alignItems="center"
-      justifyContent="center"
-    >
-      <Flex
-        maxW="sm"
-        w="full"
-        mx="auto"
-        shadow="md"
-        rounded="lg"
-        overflow="hidden"
-      >
-        <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
-          <Icon as={BsLightningFill} color="white" boxSize={6} />
-        </Flex>
+            {show1 && <Flex
+                w="full"
+                bg="gray.600"
+                p={50}
+                alignItems="center"
+                justifyContent="center"
+            >
+                <Flex
+                    maxW="sm"
+                    w="full"
+                    mx="auto"
+                    shadow="md"
+                    rounded="lg"
+                    overflow="hidden"
+                >
+                    <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
+                        <Icon as={BsLightningFill} color="white" boxSize={6} />
+                    </Flex>
 
-        <Box mx={-3} py={2} px={4}>
-          <Box mx={3}>
-            <chakra.span
-              fontWeight="bold"
-            >
-              Error
-            </chakra.span>
-            <chakra.p
-              fontSize="sm"
-            >
-              You have already favourited this pokemon!
-            </chakra.p>
-          </Box>
-        </Box>
-      </Flex>
-    </Flex>}
+                    <Box mx={-3} py={2} px={4}>
+                        <Box mx={3}>
+                            <chakra.span
+                                fontWeight="bold"
+                            >
+                                Error
+                            </chakra.span>
+                            <chakra.p
+                                fontSize="sm"
+                            >
+                                You have already favourited this pokemon!
+                            </chakra.p>
+                        </Box>
+                    </Box>
+                </Flex>
+            </Flex>}
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
