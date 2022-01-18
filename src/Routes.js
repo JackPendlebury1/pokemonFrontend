@@ -11,15 +11,15 @@ import SearchPokemon from './pages/SearchPokemon'
 
 import { Switch ,Route } from 'react-router-dom';
 
-export const Routes = () => {
+export const Routes = ({userImage}) => {
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/home" component={LandingPage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegistrationPage} />
-            <Route exact path="/About Me " component={AboutMe} />
             <Route exact path="/Read Me" component={ReadMe} />
+            <Route exact path="/dashboard/profile" component={() => <AboutMe userImage={userImage}/>} />
             <Route exact path="/dashboard/pokedex" component={Dashboard} />
             <Route exact path="/dashboard/search/:index" component={SearchPokemon} />
             <Route exact path="/dashboard/favourites" component={FavouritePokemon} />

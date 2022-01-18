@@ -17,7 +17,6 @@ function App() {
           let data = response.json
           setUserImage(data.userImage)
           setIsLoggedIn(true)
-
         }
       }
       fetchData()
@@ -29,7 +28,7 @@ function App() {
       <ChakraProvider>
         <NavBar isLoggedIn={isLoggedIn} userImage={userImage}/>
         <Box p={10}>
-          <Routes />
+          <Routes userImage={userImage}/>
         </Box>
       </ChakraProvider>
     </Router>

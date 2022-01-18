@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 import { BsLightningFill } from "react-icons/bs";
 
-export const ErrorMessage = () => {
+export const ErrorMessage = ({Error, Color, Title}) => {
     return (
         <>
          <Flex
@@ -18,7 +18,7 @@ export const ErrorMessage = () => {
                     rounded="lg"
                     overflow="hidden"
                 >
-            <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
+            <Flex justifyContent="center" alignItems="center" w={12} bg={Color}>
                         <Icon as={BsLightningFill} color="white" boxSize={6} />
                     </Flex>
 
@@ -27,12 +27,12 @@ export const ErrorMessage = () => {
                             <chakra.span
                                 fontWeight="bold"
                             >
-                                Error
+                                {Title}
                             </chakra.span>
                             <chakra.p
                                 fontSize="sm"
                             >
-                                You have already favourited this pokemon!
+                                {Error}
                             </chakra.p>
                         </Box>
                     </Box>
