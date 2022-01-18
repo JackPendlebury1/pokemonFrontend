@@ -22,7 +22,7 @@ import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import UserCard from '../components/UserCard';
 
-export const FavouritePokemon = (user) => {
+export const FavouritePokemon = ({user}) => {
 
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();

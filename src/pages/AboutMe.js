@@ -19,7 +19,7 @@ import { ErrorMessage } from "../components/ErrorMessage"
 import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form'
 
-export const AboutMe = (user) => {
+export const AboutMe = ({user}) => {
     
     const {
         handleSubmit,
