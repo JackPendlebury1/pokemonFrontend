@@ -60,7 +60,7 @@ export const AboutMe = (user) => {
         }
     }
 
-    const updateinfoButton = async (values) => {
+    const updateInfoButton = async (values) => {
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/edit", {
             method: 'POST',
             headers: {
@@ -126,7 +126,7 @@ export const AboutMe = (user) => {
                             </Center>
                         </Stack>
                     </FormControl>
-                    <form onSubmit={handleSubmit(updateinfoButton)}>
+                    <form onSubmit={handleSubmit(updateInfoButton)}>
                         <FormControl id="first_name" isRequired>
                             <FormLabel>First name</FormLabel>
                             <Input

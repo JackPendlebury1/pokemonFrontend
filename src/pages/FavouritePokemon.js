@@ -22,7 +22,7 @@ import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import UserCard from '../components/UserCard';
 
-export default function FavouritePokemon() {
+export const FavouritePokemon = (user) => {
 
 
     const [AllData, setAllData] = useState([]);
@@ -48,7 +48,7 @@ export default function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favouritesList.favorites.forEach(async e => {
+        favouritesList.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
@@ -63,7 +63,7 @@ export default function FavouritePokemon() {
     }
 
     const fetchFavourites = async () => {
-        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
+        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${Cookies.get("id")}/`, {
             method: 'GET',
             headers: {
                 "Authorization": Cookies.get("login")
@@ -112,7 +112,7 @@ export default function FavouritePokemon() {
                 <>
                     <Heading p='5'>Favourites</Heading>
                     <SimpleGrid minChildWidth="500px" spacing={5}>
-                        <UserCard user={favouritesList}/>
+                        <UserCard user={user}/>
                         {AllData?.map(pokemon => {
                             return (
                                 <>

@@ -6,12 +6,12 @@ import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound'
 import {ReadMe} from './pages/ReadMe'
 import {AboutMe} from './pages/AboutMe'
-import FavouritePokemon from './pages/FavouritePokemon'
+import {FavouritePokemon} from './pages/FavouritePokemon'
 import SearchPokemon from './pages/SearchPokemon'
 
 import { Switch ,Route } from 'react-router-dom';
 
-export const Routes = ({user}) => {
+export const Routes = (user) => {
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
