@@ -40,7 +40,7 @@ export default function NavBar({ isLoggedIn }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const SignOut = () => {
-    Cookies.remove("Login")
+    Cookies.remove("login")
   }
 
   return (
