@@ -17,7 +17,7 @@ import {
     useDisclosure,
     HStack,
 } from '@chakra-ui/react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import UserCard from '../components/UserCard';

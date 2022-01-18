@@ -32,7 +32,7 @@ export default function SimpleCard() {
     const {
         handleSubmit,
         register,
-        formState: { errors, isSubmitting },
+        formState: { isSubmitting },
     } = useForm()
 
     const onSubmit = async (values) => {
