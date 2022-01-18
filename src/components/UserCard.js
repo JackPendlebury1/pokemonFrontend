@@ -10,7 +10,7 @@ import {
     Text,
   } from '@chakra-ui/react';
   
-  export default function UserCard({profile}) {
+  export default function UserCard({user}) {
 
     return (
       <Center py={6}>
@@ -33,7 +33,7 @@ import {
             <Avatar
               size={'xl'}
               src={
-                `data:image/jpeg;base64, ${profile.userImage}`
+                `data:image/jpeg;base64, ${user.userImage}`
               }
               alt={'Author'}
               css={{
@@ -47,8 +47,8 @@ import {
               <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
                 {profile.first_name} {profile.last_name}
               </Heading>
-              <Text color={'gray.500'}>User since: {profile.created_at}</Text>
-              <Text color={'gray.500'}>User ID: {profile.id}</Text>
+              <Text color={'gray.500'}>User since: {user.created_at}</Text>
+              <Text color={'gray.500'}>User ID: {user.id}</Text>
             </Stack>
           </Box>
         </Box>
