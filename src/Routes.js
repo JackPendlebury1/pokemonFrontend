@@ -11,7 +11,7 @@ import SearchPokemon from './pages/SearchPokemon'
 
 import { Switch ,Route } from 'react-router-dom';
 
-export const Routes = ({userImage}) => {
+export const Routes = ({user}) => {
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -19,7 +19,7 @@ export const Routes = ({userImage}) => {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegistrationPage} />
             <Route exact path="/Read Me" component={ReadMe} />
-            <Route exact path="/dashboard/profile" component={() => <AboutMe userImage={userImage}/>} />
+            <Route exact path="/dashboard/profile" component={() => <AboutMe user={user}/>} />
             <Route exact path="/dashboard/pokedex" component={Dashboard} />
             <Route exact path="/dashboard/search/:index" component={SearchPokemon} />
             <Route exact path="/dashboard/favourites" component={FavouritePokemon} />

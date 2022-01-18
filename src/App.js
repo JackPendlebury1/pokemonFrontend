@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userImage, setUserImage] = useState()
+  const [user, setUser] = useState([])
  
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +15,7 @@ function App() {
             { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response.ok) {
           let data = await response.json();
-          setUserImage(data.userImage)
+          setUser(data)
           setIsLoggedIn(true)
         }
       }
@@ -26,9 +26,9 @@ function App() {
   return (
     <Router>
       <ChakraProvider>
-        <NavBar isLoggedIn={isLoggedIn} userImage={userImage}/>
+        <NavBar isLoggedIn={isLoggedIn} user={user}/>
         <Box p={10}>
-          <Routes userImage={userImage}/>
+          <Routes user={user}/>
         </Box>
       </ChakraProvider>
     </Router>
