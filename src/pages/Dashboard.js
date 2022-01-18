@@ -16,6 +16,7 @@ import {
     useDisclosure,
     HStack,
     Spacer,
+    IconButton,
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
@@ -107,15 +108,22 @@ function Dashboard() {
             </Modal>
 
             <Stack direction='row' spacing={4} align='center'>
-                <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid'>
+                    <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none' }}/>
+                    <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none' }}/>
+                    <Link to='/dashboard/favourites/'>
+                        <IconButton icon={<StarIcon />} display={{ md: 'none' }}/>
+                    </Link>
+               
+
+                <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid'  display={{ sm: 'none', md: 'inline'}}>
                     Previous Page
                 </Button>
-                <Button leftIcon={<ArrowForwardIcon />} onClick={() => nextPage()} colorScheme='teal' variant='solid'>
+                <Button leftIcon={<ArrowForwardIcon />} onClick={() => nextPage()} colorScheme='teal' variant='solid' display={{ sm: 'none',  md: 'inline' }}>
                     Next Page
                 </Button>
                 <Spacer></Spacer>
                 <Link to='/dashboard/favourites/'>
-                    <Button leftIcon={<StarIcon />} colorScheme='teal' variant='solid'>
+                    <Button leftIcon={<StarIcon />} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
                         favourites
                     </Button>
                 </Link>
@@ -134,7 +142,7 @@ function Dashboard() {
                                     borderWidth="1px"
                                     borderRadius="lg"
                                     w={{ sm: '250px', md: '500px' }}
-                                    height={{ sm: '280px', md: '20rem' }}
+                                    height={{ sm: '350px', md: '20rem' }}
                                     direction={{ base: 'column', md: 'row' }}
                                     boxShadow={'2xl'}
                                     padding={4}>
@@ -158,7 +166,7 @@ function Dashboard() {
                                         <Heading fontSize={'2xl'} fontFamily={'body'}>
                                             {pokemon.name}
                                         </Heading>
-                                        <HStack >
+                                        <HStack>
                                             <Button onClick={() => favouritePokemon(index)}
                                                 boxShadow={
                                                     '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
