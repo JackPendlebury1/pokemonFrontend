@@ -11,7 +11,7 @@ import {
   } from '@chakra-ui/react';
   
   export default function UserCard({user}) {
-      const newDate = user.created_at.split(" ").toString
+
     return (
       <Center py={6}>
         <Box
