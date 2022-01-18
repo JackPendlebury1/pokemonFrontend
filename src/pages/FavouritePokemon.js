@@ -17,19 +17,19 @@ import {
     useDisclosure,
     HStack,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import UserCard from '../components/UserCard';
 
-export const FavouritePokemon = (user) => {
-
+export const FavouritePokemon = ({user}) => {
 
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
+    const [profile, setProfile] = useState([])
     let favouritesList
-    // = [{"favourite_index":5,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":6,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":8,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":7,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":11,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":1,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"},{"favourite_index":2,"owner_id":"10dec4b6-7195-11ec-9e0f-00155d0e3230"}]
+    const history = useHistory();
 
 
     const unfavourite = async (index) => {
@@ -77,9 +77,25 @@ export const FavouritePokemon = (user) => {
             console.error("Cannot Find Favourites")
         }
 
-    }
+    }       
 
     useEffect(() => {
+        const fetchProfile = async () => {
+            const response3 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
+                method: 'GET',
+                headers: {
+                    "Authorization": Cookies.get("login")
+                }
+            })
+            if (!response3.ok) {
+                history.push("/");
+            } else {
+                let data = await response3.json();
+                setProfile(data)
+                Cookies.set("id", data.id, { sameSite: 'Strict' })
+            }
+        }
+        fetchProfile();
         fetchFavourites();
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
@@ -112,7 +128,7 @@ export const FavouritePokemon = (user) => {
                 <>
                     <Heading p='5'>Favourites</Heading>
                     <SimpleGrid minChildWidth="500px" spacing={5}>
-                        <UserCard user={user}/>
+                        <UserCard profile={profile}/>
                         {AllData?.map(pokemon => {
                             return (
                                 <>
