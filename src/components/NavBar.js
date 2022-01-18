@@ -36,7 +36,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export const NavBar = React.memo(isLoggedIn  =>   {
+export const NavBar =  ({ isLoggedIn }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const SignOut = () => {
@@ -137,4 +137,4 @@ export const NavBar = React.memo(isLoggedIn  =>   {
     </Box>
     </>
   );
-}  )
+}
