@@ -46,7 +46,7 @@ import {
               <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
                 {user.first_name} {user.last_name}
               </Heading>
-              <Text color={'gray.500'}>User since: {user.created_at}</Text>
+              <Text color={'gray.500'}>User since: {JSON.stringify(user.created_at)}</Text>
             </Stack>
           </Box>
         </Box>
