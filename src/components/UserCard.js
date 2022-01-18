@@ -11,6 +11,7 @@ import {
   } from '@chakra-ui/react';
   
   export default function UserCard({user}) {
+      const newDate = user.created_at.split(" ").toString
     return (
       <Center py={6}>
         <Box
@@ -46,7 +47,8 @@ import {
               <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
                 {user.first_name} {user.last_name}
               </Heading>
-              <Text color={'gray.500'}>User since: {user.created_at.split(' ')[user.created_at.split(' ')]}</Text>
+              <Text color={'gray.500'}>User since: {newDate}</Text>
+              <Text color={'gray.500'}>User ID: {user.id}</Text>
             </Stack>
           </Box>
         </Box>
