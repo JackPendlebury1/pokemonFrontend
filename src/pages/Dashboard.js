@@ -22,7 +22,7 @@ import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { ErrorMessage } from '../components/ErrorMessage';
-
+import {NavBar} from '../components/NavBar'
 
 function Dashboard() {
 
@@ -31,6 +31,7 @@ function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const fetchDataAll = async (url) => {
 
@@ -41,7 +42,7 @@ function Dashboard() {
             console.log("something failed")
         } else {
             let data = await response.json();
-
+            
             setAllData(data)
         }
     }
@@ -58,6 +59,7 @@ function Dashboard() {
                 history.push("/");
             } else {
                 let data = await response1.json();
+                setIsLoggedIn(true)
                 Cookies.set("id", data.id, { sameSite: 'Strict' })
             }
         }
@@ -86,6 +88,7 @@ function Dashboard() {
 
     return (
         <>
+            <NavBar isLoggedIn={isLoggedIn} hidden/>
             {show &&
 
                 <ErrorMessage Title={"Error"} Color={"red.500"} Error={"You have already favourited this pokemon!"} />
