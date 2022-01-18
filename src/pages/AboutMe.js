@@ -52,6 +52,26 @@ export const AboutMe = ( user ) => {
         }
     }
 
+    const updateinfoButton = async () => {
+        const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/edit", {
+            method: 'POST',
+            headers: {
+                "Authorization": Cookies.get("login")
+            },
+            body: JSON.stringify(values)
+        }
+        )
+        if (response.ok) {
+            toggleShow(true);
+            setTimeout(() => { toggleShow(false) }, 4000);
+            setImage(null)
+        }
+        else {
+            toggleShow1(true);
+            setTimeout(() => { toggleShow1(false) }, 4000);
+        }
+    }
+
 
     return (
         <>

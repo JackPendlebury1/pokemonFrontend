@@ -47,7 +47,7 @@ import {
               <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
                 {user.first_name} {user.last_name}
               </Heading>
-              <Text color={'gray.500'}>User since: {newDate[0]}</Text>
+              <Text color={'gray.500'}>User since: {user.created_at}</Text>
               <Text color={'gray.500'}>User ID: {user.id}</Text>
             </Stack>
           </Box>
