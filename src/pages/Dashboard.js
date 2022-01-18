@@ -60,6 +60,7 @@ function Dashboard() {
                 Cookies.set("id", data.id, { sameSite: 'Strict' })
             }
         }
+        window.location.reload();
         fetchData();
         fetchDataAll(url);
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
