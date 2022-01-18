@@ -108,17 +108,17 @@ function Dashboard() {
             </Modal>
 
             <Stack direction='row' spacing={4} align='center'>
-                    <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none' }}/>
-                    <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none' }}/>
-                    <Link to='/dashboard/favourites/'>
-                        <IconButton icon={<StarIcon />} display={{ md: 'none' }}/>
-                    </Link>
-               
+                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none' }} />
+                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none' }} />
+                <Link to='/dashboard/favourites/'>
+                    <IconButton icon={<StarIcon />} display={{ md: 'none' }} />
+                </Link>
 
-                <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid'  display={{ sm: 'none', md: 'inline'}}>
+
+                <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
                     Previous Page
                 </Button>
-                <Button leftIcon={<ArrowForwardIcon />} onClick={() => nextPage()} colorScheme='teal' variant='solid' display={{ sm: 'none',  md: 'inline' }}>
+                <Button leftIcon={<ArrowForwardIcon />} onClick={() => nextPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
                     Next Page
                 </Button>
                 <Spacer></Spacer>
@@ -128,16 +128,16 @@ function Dashboard() {
                     </Button>
                 </Link>
             </Stack>
-            
+
             <Heading p='5'>PokeDex</Heading>
             <SimpleGrid minChildWidth="500px" spacing={5}>
-                
+
                 {AllData.results?.map(pokemon => {
                     let index = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                     let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + index + ".png?raw=true"
                     return (
                         <>
-                        <Flex justify={'center'}>
+                            <Flex justify={'center'}>
                                 <Stack
                                     borderWidth="1px"
                                     borderRadius="lg"
@@ -191,7 +191,7 @@ function Dashboard() {
 
                                     </Stack>
                                 </Stack>
-                                </Flex>
+                            </Flex>
                         </>
                     )
                 })}

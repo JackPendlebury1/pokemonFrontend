@@ -144,7 +144,7 @@ export default function SignupCard() {
                                 <FormControl id="password" isRequired isInvalid={errors.email}>
                                     <FormLabel htmlFor='password'>Password</FormLabel>
                                     <InputGroup>
-                                        <Input 
+                                        <Input
                                             id='password'
                                             placeholder='Password'
                                             {...register('password', {

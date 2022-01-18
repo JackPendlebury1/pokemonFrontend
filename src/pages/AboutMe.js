@@ -56,11 +56,9 @@ export const AboutMe = ({ user }) => {
     return (
         <>
             {show &&
-
                 <ErrorMessage Title={"Completed"} Color={"green.500"} Error={"You have uploaded your image"} />
             }
-            {
-                show1 &&
+            {show1 &&
                 <ErrorMessage Title={"Error"} Color={"red.500"} Error={"This Operation did not work try again"} />
             }
             <Flex

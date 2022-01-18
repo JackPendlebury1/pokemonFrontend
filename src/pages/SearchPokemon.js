@@ -53,7 +53,7 @@ export default function SearchPokemon() {
     return (
         <>
             {show1 &&
-                <ErrorMessage Title={"Error"} Color={"red.500"} Error={"You have already favourited this pokemon!"}/>
+                <ErrorMessage Title={"Error"} Color={"red.500"} Error={"You have already favourited this pokemon!"} />
             }
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

@@ -33,7 +33,7 @@ export default function SimpleCard() {
         handleSubmit,
         register,
         formState: { errors, isSubmitting },
-      } = useForm()
+    } = useForm()
 
     const onSubmit = async (values) => {
         formData.append('username', values.email);
@@ -97,13 +97,13 @@ export default function SimpleCard() {
                                 </FormControl>
                                 <FormControl id="password">
                                     <FormLabel>Password</FormLabel>
-                                    <Input 
-                                    id='password'
-                                    placeholder='Password'
-                                    {...register('password', {
-                                        required: 'This is required'
-                                    })}
-                                    type="password" />
+                                    <Input
+                                        id='password'
+                                        placeholder='Password'
+                                        {...register('password', {
+                                            required: 'This is required'
+                                        })}
+                                        type="password" />
                                 </FormControl>
                                 <Stack spacing={10}>
                                     <Stack
