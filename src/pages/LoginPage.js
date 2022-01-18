@@ -42,7 +42,7 @@ export default function SimpleCard() {
         if (response.status === 200) {
             let token = await response.json();
             Cookies.set('login', token.token_type + " " + token.access_token, { sameSite: 'Strict' })
-            history.push("/dashboard/pokedex");
+            history.push("/");
         } else {
             onOpen()
 
