@@ -20,7 +20,7 @@ import {
 import { Link } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
-import UserCard from '../components/UserCard';
+import {UserCard} from '../components/UserCard';
 
 export const FavouritePokemon = ({user}) => {
 
