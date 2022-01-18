@@ -7,6 +7,7 @@ import {
     Flex,
     Stack,
     useColorModeValue,
+    Text,
   } from '@chakra-ui/react';
   
   export default function UserCard({user}) {
