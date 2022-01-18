@@ -17,26 +17,22 @@ import {
     useDisclosure,
     HStack,
     Spacer,
-    chakra,
-    Box,
-    Icon,
+
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { BsLightningFill } from "react-icons/bs";
+import { ErrorMessage } from '../components/ErrorMessage';
 
 
 function Dashboard() {
 
-    const [limitAmount, setLimitAmount] = useState(100)
-    const [offsetAmount, setOffsetAmount] = useState(0)
     const [AllData, setAllData] = useState([])
-    const url = "https://pokeapi.co/api/v2/pokemon?limit=" + limitAmount + "&offset=" + offsetAmount
+    const url = "https://pokeapi.co/api/v2/pokemon?limit=" + 100 + "&offset=" + 0
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
-    
+
     const fetchDataAll = async (url) => {
 
         const response = await fetch(url, {
@@ -72,12 +68,12 @@ function Dashboard() {
 
     const favouritePokemon = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${index}`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }});
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response2.ok) {
             onOpen()
         } else if (response2.status === 400) {
             toggleShow(true)
-            setTimeout(() => {  toggleShow(false) }, 4000);
+            setTimeout(() => { toggleShow(false) }, 4000);
         }
     }
 
@@ -91,35 +87,11 @@ function Dashboard() {
 
     return (
         <>
-            {show && 
-                <Flex
-                    maxW="sm"
-                    w="full"
-                    mx="auto"
-                    shadow="md"
-                    rounded="lg"
-                    overflow="hidden"
-                >
-                    <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
-                        <Icon as={BsLightningFill} color="white" boxSize={6} />
-                    </Flex>
+            {show &&
 
-                    <Box mx={-3} py={2} px={4}>
-                        <Box mx={3}>
-                            <chakra.span
-                                fontWeight="bold"
-                            >
-                                Error
-                            </chakra.span>
-                            <chakra.p
-                                fontSize="sm"
-                            >
-                                You have already favourited this pokemon!
-                            </chakra.p>
-                        </Box>
-                    </Box>
-            </Flex>}
-            
+                <ErrorMessage />
+            }
+
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -150,6 +122,7 @@ function Dashboard() {
                     </Button>
                 </Link>
             </Stack>
+            
             <Heading p='5'>PokeDex</Heading>
             <SimpleGrid columns={3} spacing={5}>
 

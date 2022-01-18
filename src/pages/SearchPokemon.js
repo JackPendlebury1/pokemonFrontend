@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import {
     Button, Box, Image, Grid, GridItem, Container, Progress, Heading, Text, SimpleGrid, Tag, TagLabel, Stack, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Spacer,
-    chakra,
-    Icon,
-    Flex
 } from '@chakra-ui/react'
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { BsLightningFill } from "react-icons/bs";
+import { ErrorMessage } from '../components/ErrorMessage';
 
 export default function SearchPokemon() {
     const [pokemon, setPokemon] = useState([])
@@ -38,12 +35,12 @@ export default function SearchPokemon() {
 
     const favourite = async (id) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${id}`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") }});
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response2.ok) {
             onOpen()
         } else if (response2.status === 400) {
             toggleShow1(true)
-            setTimeout(() => {  toggleShow1(false) }, 4000);
+            setTimeout(() => { toggleShow1(false) }, 4000);
 
         }
     }
@@ -55,34 +52,9 @@ export default function SearchPokemon() {
 
     return (
         <>
-            {show1 && 
-                <Flex
-                    maxW="sm"
-                    w="full"
-                    mx="auto"
-                    shadow="md"
-                    rounded="lg"
-                    overflow="hidden"
-                >
-                    <Flex justifyContent="center" alignItems="center" w={12} bg="red.500">
-                        <Icon as={BsLightningFill} color="white" boxSize={6} />
-                    </Flex>
-
-                    <Box mx={-3} py={2} px={4}>
-                        <Box mx={3}>
-                            <chakra.span
-                                fontWeight="bold"
-                            >
-                                Error
-                            </chakra.span>
-                            <chakra.p
-                                fontSize="sm"
-                            >
-                                You have already favourited this pokemon!
-                            </chakra.p>
-                        </Box>
-                    </Box>
-            </Flex>}
+            {show1 &&
+                <ErrorMessage />
+            }
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
