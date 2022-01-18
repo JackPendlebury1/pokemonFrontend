@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userImage, setUserImage] = useState("")
+  const [userImage, setUserImage] = useState()
  
   useEffect(() => {
     const fetchData = async () => {
