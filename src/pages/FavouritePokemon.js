@@ -27,10 +27,7 @@ export const FavouritePokemon = (user) => {
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    const [profile, setProfile] = useState([])
     let favouritesList
-    const history = useHistory();
-
 
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
@@ -80,22 +77,6 @@ export const FavouritePokemon = (user) => {
     }       
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            const response3 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
-                method: 'GET',
-                headers: {
-                    "Authorization": Cookies.get("login")
-                }
-            })
-            if (!response3.ok) {
-                history.push("/");
-            } else {
-                let data = await response3.json();
-                setProfile(data)
-                Cookies.set("id", data.id, { sameSite: 'Strict' })
-            }
-        }
-        fetchProfile();
         fetchFavourites();
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
