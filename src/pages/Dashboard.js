@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
     Button,
-    Center,
     Flex,
     Heading,
     Image,
@@ -17,7 +16,6 @@ import {
     useDisclosure,
     HStack,
     Spacer,
-
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
@@ -124,23 +122,23 @@ function Dashboard() {
             </Stack>
             
             <Heading p='5'>PokeDex</Heading>
-            <SimpleGrid columns={3} spacing={5}>
-
+            <SimpleGrid minChildWidth="500px" spacing={5}>
+                
                 {AllData.results?.map(pokemon => {
                     let index = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                     let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + index + ".png?raw=true"
                     return (
                         <>
-                            <Center py={6}>
+                        <Flex justify={'center'}>
                                 <Stack
                                     borderWidth="1px"
                                     borderRadius="lg"
-                                    w={{ sm: '100%', md: '500px' }}
+                                    w={{ sm: '250px', md: '500px' }}
                                     height={{ sm: '280px', md: '20rem' }}
                                     direction={{ base: 'column', md: 'row' }}
                                     boxShadow={'2xl'}
                                     padding={4}>
-                                    <Flex flex={1} bg="blue.200">
+                                    <Flex bg="blue.200">
                                         <Image
                                             objectFit="cover"
                                             boxSize="100%"
@@ -185,14 +183,10 @@ function Dashboard() {
 
                                     </Stack>
                                 </Stack>
-                            </Center>
-
+                                </Flex>
                         </>
                     )
                 })}
-
-
-
             </SimpleGrid>
         </>
     );

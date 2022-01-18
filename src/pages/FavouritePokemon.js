@@ -110,7 +110,7 @@ export default function FavouritePokemon() {
                 show &&
                 <>
                     <Heading p='5'>Favourites</Heading>
-                    <SimpleGrid columns={3} spacing={5}>
+                    <SimpleGrid minChildWidth="500px" spacing={5}>
 
                         {AllData?.map(pokemon => {
                             return (
@@ -119,7 +119,7 @@ export default function FavouritePokemon() {
                                         <Stack
                                             borderWidth="1px"
                                             borderRadius="lg"
-                                            w={{ sm: '100%', md: '500px' }}
+                                            w={{ sm: '250px', md: '500px' }}
                                             height={{ sm: '280px', md: '20rem' }}
                                             direction={{ base: 'column', md: 'row' }}
                                             boxShadow={'2xl'}

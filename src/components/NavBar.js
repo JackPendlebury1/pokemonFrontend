@@ -18,6 +18,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import Cookies from 'js-cookie';
 
 const Links = ['Home', 'Read Me'];
 
@@ -38,6 +39,10 @@ const NavLink = ({ children }) => (
 export default function NavBar({ isLoggedIn }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const SignOut = () => {
+    Cookies.remove("Login")
+  }
+
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -82,10 +87,10 @@ export default function NavBar({ isLoggedIn }) {
                       />
                     </MenuButton>
                     <MenuList>
-                      <MenuItem>Dashboard</MenuItem>
-                      <MenuItem>Edit Profile</MenuItem>
+                      <MenuItem as={'a'} href={'/dashboard/pokedex'}>Dashboard</MenuItem>
+                      <MenuItem as={'a'} href={'/dashboard/profile'}>Edit Profile</MenuItem>
                       <MenuDivider />
-                      <MenuItem>Sign Out</MenuItem>
+                      <MenuItem as={'a'} href={'/'} onClick={() => SignOut()}>Sign Out</MenuItem>
                     </MenuList>
                   </Menu> :
                   <Stack

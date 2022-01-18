@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
-import Footer from './components/Footer';
 import { Routes } from './Routes'
 import NavBar from './components/NavBar'
 import { ChakraProvider, Box } from '@chakra-ui/react'
@@ -10,7 +9,6 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
  
   useEffect(() => {
-    console.log("ran useEffect")
     const fetchData = async () => {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
             { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
