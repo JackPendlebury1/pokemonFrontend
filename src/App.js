@@ -7,13 +7,17 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userImage, setUserImage] = useState()
  
   useEffect(() => {
     const fetchData = async () => {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
             { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response.ok) {
+          let data = response.json
+          setUserImage(data.userImage)
           setIsLoggedIn(true)
+
         }
       }
       fetchData()
@@ -23,7 +27,7 @@ function App() {
   return (
     <Router>
       <ChakraProvider>
-        <NavBar isLoggedIn={isLoggedIn} />
+        <NavBar isLoggedIn={isLoggedIn} userImage={userImage}/>
         <Box p={10}>
           <Routes />
         </Box>

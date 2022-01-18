@@ -36,7 +36,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export const NavBar =  ({ isLoggedIn }) => {
+export const NavBar = ({ isLoggedIn, userImage }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const SignOut = () => {
@@ -82,7 +82,7 @@ export const NavBar =  ({ isLoggedIn }) => {
                       <Avatar
                         size={'sm'}
                         src={
-                          'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                          "data:image/jpeg;base64," + userImage
                         }
                       />
                     </MenuButton>
@@ -106,7 +106,7 @@ export const NavBar =  ({ isLoggedIn }) => {
                       href={'/login'}>
                       Sign In
                     </Button>
-                  <Button
+                    <Button
                       as={'a'}
                       display={{ base: 'none', md: 'inline-flex' }}
                       fontSize={'sm'}
@@ -118,23 +118,23 @@ export const NavBar =  ({ isLoggedIn }) => {
                         bg: 'pink.300',
                       }}>
                       Sign Up
-                    </Button>                  
-                </Stack>
-            }
-          </Stack>
+                    </Button>
+                  </Stack>
+              }
+            </Stack>
+          </Flex>
         </Flex>
-      </Flex>
 
-      {isOpen ? (
-        <Box pb={4} display={{ md: 'none' }}>
-          <Stack as={'nav'} spacing={4}>
-            {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
-            ))}
-          </Stack>
-        </Box>
-      ) : null}
-    </Box>
+        {isOpen ? (
+          <Box pb={4} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4}>
+              {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            </Stack>
+          </Box>
+        ) : null}
+      </Box>
     </>
   );
 }
