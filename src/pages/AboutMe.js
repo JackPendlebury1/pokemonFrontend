@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
     Button,
     Flex,
@@ -20,7 +20,8 @@ import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form'
 
 export const AboutMe = ({user}) => {
-    
+    const fileInput = useRef(null)
+    const [selectedFile, setSelectedFile] = useState(null);
     const {
         handleSubmit,
         register,
@@ -29,18 +30,16 @@ export const AboutMe = ({user}) => {
 
     const [show, toggleShow] = useState(false);
     const [show1, toggleShow1] = useState(false);
-    const [image, setImage] = useState()
-    const fileSelector = event => {
-        setImage(event.target.files[0])
+
+    const handleFileInput = (e) => {
+        // handle validations
+        setSelectedFile(e.target.files[0])
     }
 
-    const fileUploadButton = () => {
-        document.getElementById('fileButton').click();
-    }
 
     const uploadButton = async () => {
         const formData = new FormData();
-        formData.append('image', image)
+        formData.append('image', selectedFile)
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/image", {
             method: 'POST',
             headers: {
@@ -52,7 +51,7 @@ export const AboutMe = ({user}) => {
         if (response.ok) {
             toggleShow(true);
             setTimeout(() => { toggleShow(false) }, 4000);
-            setImage(null)
+            setSelectedFile(null)
         }
         else {
             toggleShow1(true);
@@ -72,7 +71,6 @@ export const AboutMe = ({user}) => {
         if (response.ok) {
             toggleShow(true);
             setTimeout(() => { toggleShow(false) }, 4000);
-            setImage(null)
         }
         else {
             toggleShow1(true);
@@ -111,8 +109,8 @@ export const AboutMe = ({user}) => {
                             <Center>
 
                                 <Avatar size="xl" src={`data:image/jpeg;base64, ${user.userImage}`}>
-                                    <input id="fileButton" onChange={fileSelector} type="file" hidden />
-                                    <AvatarBadge onClick={() => fileUploadButton()}
+                                    <input id="fileButton" onChange={handleFileInput} type="file" hidden />
+                                    <AvatarBadge onClick={e => fileInput.current && fileInput.current.click() && uploadButton()}
                                         as={IconButton}
                                         size="sm"
                                         rounded="full"
