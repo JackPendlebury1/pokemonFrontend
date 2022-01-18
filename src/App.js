@@ -7,7 +7,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [userImage, setUserImage] = useState()
+  const [userImage, setUserImage] = useState("")
  
   useEffect(() => {
     const fetchData = async () => {
@@ -15,6 +15,7 @@ function App() {
             { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response.ok) {
           let data = response.json
+          console.log(data.userImage)
           setUserImage(data.userImage)
           setIsLoggedIn(true)
         }
