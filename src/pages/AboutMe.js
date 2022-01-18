@@ -20,7 +20,7 @@ import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form'
 
 export const AboutMe = ({user}) => {
-    const fileInput = useRef(null)
+
     const [selectedFile, setSelectedFile] = useState(null);
     const {
         handleSubmit,
@@ -32,6 +32,7 @@ export const AboutMe = ({user}) => {
     const [show1, toggleShow1] = useState(false);
 
     const uploadButton = async () => {
+        console.log(selectedFile)
         const formData = new FormData();
         formData.append('image', selectedFile)
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/image", {
