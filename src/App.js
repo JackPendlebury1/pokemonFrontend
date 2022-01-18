@@ -10,9 +10,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
  
   useEffect(() => {
+    console.log("ran useEffect")
     const fetchData = async () => {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
+            { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response.ok) {
           setIsLoggedIn(true)
         }
