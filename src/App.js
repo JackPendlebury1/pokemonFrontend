@@ -14,8 +14,7 @@ function App() {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
             { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response.ok) {
-          let data = response.json
-          console.log(data.userImage)
+          let data = await response.json();
           setUserImage(data.userImage)
           setIsLoggedIn(true)
         }
