@@ -22,7 +22,7 @@ import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import {UserCard} from '../components/UserCard';
 
-export const FavouritePokemon = ({user}) => {
+export const FavouritePokemon = () => {
 
     const [AllData, setAllData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -109,7 +109,7 @@ export const FavouritePokemon = ({user}) => {
                 <>
                     <Heading p='5'>Favourites</Heading>
                     <SimpleGrid minChildWidth="500px" spacing={5}>
-                        <UserCard user={user}/>
+                        <UserCard/>
                         {AllData?.map(pokemon => {
                             return (
                                 <>

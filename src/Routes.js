@@ -22,7 +22,7 @@ export const Routes = (user) => {
             <Route exact path="/dashboard/profile" component={() => <AboutMe user={user}/>} />
             <Route exact path="/dashboard/pokedex" component={Dashboard} />
             <Route exact path="/dashboard/search/:index" component={SearchPokemon} />
-            <Route exact path="/dashboard/favourites" component={() => <FavouritePokemon user={user}/>} />
+            <Route exact path="/dashboard/favourites" component={FavouritePokemon}/>
             <Route exact path='*' component={NotFound} />
         </Switch>
     )
