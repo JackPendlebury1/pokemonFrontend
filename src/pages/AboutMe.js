@@ -17,7 +17,7 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { ErrorMessage } from "../components/ErrorMessage"
 import Cookies from 'js-cookie';
 
-export const AboutMe = ({ user }) => {
+export const AboutMe = ( user ) => {
 
     const [show, toggleShow] = useState(false);
     const [show1, toggleShow1] = useState(false);
@@ -82,7 +82,7 @@ export const AboutMe = ({ user }) => {
                         <Stack direction={['column', 'row']} spacing={6}>
                             <Center>
 
-                                <Avatar size="xl" src={"data:image/jpeg;base64," + user.userImage}>
+                                <Avatar size="xl" src={`data:image/jpeg;base64, ${user.userImage}`}>
                                     <input id="fileButton" onChange={fileSelector} type="file" hidden />
                                     <AvatarBadge onClick={() => fileUploadButton()}
                                         as={IconButton}

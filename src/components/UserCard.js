@@ -31,7 +31,7 @@ import {
             <Avatar
               size={'xl'}
               src={
-                "data:image/jpeg;base64," + user.userImage
+                `data:image/jpeg;base64, ${user.userImage}`
               }
               alt={'Author'}
               css={{
@@ -43,8 +43,9 @@ import {
           <Box p={6}>
             <Stack spacing={0} align={'center'} mb={5}>
               <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-                {user.first_name} " " {user.last_name}
+                {user.first_name} {user.last_name}
               </Heading>
+              <Text color={'gray.500'}>User since: {user.created_at}</Text>
             </Stack>
           </Box>
         </Box>

@@ -36,7 +36,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export const NavBar = ({ isLoggedIn, userImage }) => {
+export const NavBar = ({ isLoggedIn, user }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const SignOut = () => {
@@ -82,7 +82,7 @@ export const NavBar = ({ isLoggedIn, userImage }) => {
                       <Avatar
                         size={'sm'}
                         src={
-                          "data:image/jpeg;base64," + userImage
+                          `data:image/jpeg;base64, ${user.userImage}`
                         }
                       />
                     </MenuButton>
