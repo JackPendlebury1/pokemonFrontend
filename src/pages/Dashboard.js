@@ -32,6 +32,7 @@ function Dashboard() {
     const history = useHistory();
     const [show, toggleShow] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [profile, setProfile] = useState([])
 
     const fetchDataAll = async (url) => {
 
@@ -60,6 +61,7 @@ function Dashboard() {
             } else {
                 let data = await response1.json();
                 setIsLoggedIn(true)
+                setProfile(data)
                 Cookies.set("id", data.id, { sameSite: 'Strict' })
             }
         }
@@ -88,7 +90,7 @@ function Dashboard() {
 
     return (
         <>
-            <NavBar isLoggedIn={isLoggedIn} hidden/>
+            <NavBar isLoggedIn={isLoggedIn} user={profile} hidden/>
             {show &&
 
                 <ErrorMessage Title={"Error"} Color={"red.500"} Error={"You have already favourited this pokemon!"} />
