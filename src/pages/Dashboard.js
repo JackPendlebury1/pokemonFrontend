@@ -30,7 +30,6 @@ function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
-
     const fetchDataAll = async (url) => {
 
         const response = await fetch(url, {
@@ -60,7 +59,6 @@ function Dashboard() {
                 Cookies.set("id", data.id, { sameSite: 'Strict' })
             }
         }
-        window.location.reload();
         fetchData();
         fetchDataAll(url);
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  

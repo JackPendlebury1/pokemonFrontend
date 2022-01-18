@@ -43,6 +43,7 @@ export default function SimpleCard() {
             let token = await response.json();
             Cookies.set('login', token.token_type + " " + token.access_token, { sameSite: 'Strict' })
             history.push("/dashboard/pokedex");
+            window.location.reload();
         } else {
             onOpen()
 
