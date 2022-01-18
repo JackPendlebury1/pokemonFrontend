@@ -12,12 +12,20 @@ import {
     AvatarBadge,
     IconButton,
     Center,
+    FormErrorMessage,
 } from '@chakra-ui/react';
 import { AiOutlineCamera } from "react-icons/ai";
 import { ErrorMessage } from "../components/ErrorMessage"
 import Cookies from 'js-cookie';
+import { useForm } from 'react-hook-form'
 
-export const AboutMe = ( user ) => {
+export const AboutMe = (user) => {
+
+    const {
+        handleSubmit,
+        register,
+        formState: { errors, isSubmitting },
+    } = useForm()
 
     const [show, toggleShow] = useState(false);
     const [show1, toggleShow1] = useState(false);
@@ -52,7 +60,7 @@ export const AboutMe = ( user ) => {
         }
     }
 
-    const updateinfoButton = async () => {
+    const updateinfoButton = async (values) => {
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/edit", {
             method: 'POST',
             headers: {
@@ -76,7 +84,7 @@ export const AboutMe = ( user ) => {
     return (
         <>
             {show &&
-                <ErrorMessage Title={"Completed"} Color={"green.500"} Error={"You have uploaded your image"} />
+                <ErrorMessage Title={"Completed"} Color={"green.500"} Error={"You have updated your profile"} />
             }
             {show1 &&
                 <ErrorMessage Title={"Error"} Color={"red.500"} Error={"This Operation did not work try again"} />
@@ -118,52 +126,86 @@ export const AboutMe = ( user ) => {
                             </Center>
                         </Stack>
                     </FormControl>
-                    <FormControl id="userName" isRequired>
-                        <FormLabel>User name</FormLabel>
-                        <Input
-                            placeholder="UserName"
-                            _placeholder={{ color: 'gray.500' }}
-                            type="text"
-                        />
-                    </FormControl>
-                    <FormControl id="email" isRequired>
-                        <FormLabel>Email address</FormLabel>
-                        <Input
-                            placeholder="your-email@example.com"
-                            _placeholder={{ color: 'gray.500' }}
-                            type="email"
-                        />
-                    </FormControl>
-                    <FormControl id="password" isRequired>
-                        <FormLabel>Password</FormLabel>
-                        <Input
-                            placeholder="password"
-                            _placeholder={{ color: 'gray.500' }}
-                            type="password"
-                        />
-                    </FormControl>
-                    <Stack spacing={6} direction={['column', 'row']}>
-                        <Button
-                            as={'a'}
-                            href={'/dashboard/pokedex'}
-                            bg={'red.400'}
-                            color={'white'}
-                            w="full"
-                            _hover={{
-                                bg: 'red.500',
-                            }}>
-                            Cancel
-                        </Button>
-                        <Button
-                            bg={'blue.400'}
-                            color={'white'}
-                            w="full"
-                            _hover={{
-                                bg: 'blue.500',
-                            }}>
-                            Submit
-                        </Button>
-                    </Stack>
+                    <form onSubmit={handleSubmit(updateinfoButton)}>
+                        <FormControl id="first_name" isRequired>
+                            <FormLabel>First name</FormLabel>
+                            <Input
+                                placeholder="first name"
+                                _placeholder={{ color: 'gray.500' }}
+                                {...register('first_name', {
+                                    required: 'This is required',
+                                    minLength: { value: 2, message: 'Minimum length should be 2' },
+                                })}
+                                type="text"
+                            />
+                            <FormErrorMessage>
+                                {errors.first_name && errors.first_name.message}
+                            </FormErrorMessage>
+                        </FormControl>
+                        <FormControl id="last_name" isRequired>
+                            <FormLabel>Last name</FormLabel>
+                            <Input
+                                placeholder="last name"
+                                _placeholder={{ color: 'gray.500' }}
+                                {...register('last_name', {
+                                    required: 'This is required',
+                                    minLength: { value: 2, message: 'Minimum length should be 2' },
+                                })}
+                                type="text"
+                            />
+                            <FormErrorMessage>
+                                {errors.last_name && errors.last_name.message}
+                            </FormErrorMessage>
+                        </FormControl>
+                        <FormControl id="email" isRequired>
+                            <FormLabel>Email address</FormLabel>
+                            <Input
+                                placeholder="your-email@example.com"
+                                _placeholder={{ color: 'gray.500' }}
+                                {...register('email', {
+                                    required: 'This is required',
+                                    minLength: { value: 2, message: 'Minimum length should be 5' },
+                                })}
+                                type="email"
+                            />
+                        </FormControl>
+                        <FormControl id="password" isRequired>
+                            <FormLabel>Password</FormLabel>
+                            <Input
+                                placeholder="password"
+                                _placeholder={{ color: 'gray.500' }}
+                                {...register('password', {
+                                    required: 'This is required',
+                                    minLength: { value: 2, message: 'Minimum length should be 8' },
+                                })}
+                                type="password"
+                            />
+                        </FormControl>
+                        <Stack p={10}spacing={6} direction={['column', 'row']}>
+                            <Button
+                                as={'a'}
+                                href={'/dashboard/pokedex'}
+                                bg={'red.400'}
+                                color={'white'}
+                                w="full"
+                                _hover={{
+                                    bg: 'red.500',
+                                }}>
+                                Cancel
+                            </Button>
+                            <Button
+                                isLoading={isSubmitting}
+                                type='submit'
+                                bg={'blue.400'}
+                                color={'white'}
+                                w="full"
+                                _hover={{
+                                    bg: 'blue.500',
+                                }}>
+                                Submit
+                            </Button>
+                        </Stack>
+                    </form>
                 </Stack>
             </Flex>
         </>
