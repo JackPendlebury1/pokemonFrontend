@@ -135,9 +135,8 @@ export const FavouritePokemon = () => {
                                 <SimpleGrid minChildWidth="500px" spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
                                     <UserCard />
                                     {AllData?.map((pokemon, index) => {
-                                        let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                                         return (
-                                            <Draggable key={pokemonIndex} draggableId={pokemonIndex} index={index}>
+                                            <Draggable key={pokemon.id} draggableId={pokemon.id} index={index}>
                                                 {(provided) => (
                                                     <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                         <Center py={6}>
