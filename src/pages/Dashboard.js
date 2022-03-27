@@ -83,8 +83,8 @@ function Dashboard() {
         fetchDataAll(AllData.previous)
     }
 
-   
-    
+
+
 
     return (
         <>
@@ -110,10 +110,10 @@ function Dashboard() {
             </Modal>
 
             <Stack direction='row' spacing={4} align='center'>
-                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none', sm: 'none' }} />
-                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none', sm: 'none' }} />
+                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none', sm: 'inline' }} />
+                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none', sm: 'inline' }} />
                 <Link to='/dashboard/favourites/'>
-                    <IconButton icon={<StarIcon />} display={{ md: 'none', sm: 'none' }} />
+                    <IconButton icon={<StarIcon />} display={{ md: 'none', sm: 'inline' }} />
                 </Link>
 
                 <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
@@ -132,76 +132,75 @@ function Dashboard() {
 
 
             <Heading p='5'>PokeDex</Heading>
-            
-                        <SimpleGrid minChildWidth="500px" spacing={5}>
-                            {AllData.results?.map(pokemon  => {
-                                let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
-                                let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
-                                return (
-                                    
-                                                <Flex justify={'center'}>
-                                                    <Stack
-                                                        borderWidth="1px"
-                                                        borderRadius="lg"
-                                                        w={{ sm: '250px', md: '500px' }}
-                                                        height={{ sm: '350px', md: '20rem' }}
-                                                        direction={{ base: 'column', md: 'row' }}
-                                                        boxShadow={'2xl'}
-                                                        padding={4}>
-                                                        <Flex bg="blue.200">
-                                                            <Image
-                                                                objectFit="cover"
-                                                                boxSize="100%"
-                                                                src={
-                                                                    image
-                                                                }
-                                                            />
-                                                        </Flex>
 
-                                                        <Stack
-                                                            flex={1}
-                                                            flexDirection="column"
-                                                            justifyContent="center"
-                                                            alignItems="center"
-                                                            p={1}
-                                                            pt={2}>
-                                                            <Heading fontSize={'2xl'} fontFamily={'body'}>
-                                                                {pokemon.name}
-                                                            </Heading>
-                                                            <HStack>
-                                                                <Button onClick={() => favouritePokemon(pokemonIndex)}
-                                                                    boxShadow={
-                                                                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                                                    }
-                                                                    _hover={{
-                                                                        bg: 'blue.500',
-                                                                    }}
-                                                                    _focus={{
-                                                                        bg: 'blue.500',
-                                                                    }}
-                                                                    leftIcon={<StarIcon />}>
-                                                                    favorite
-                                                                </Button>
-                                                                <Link to={`/dashboard/search/${pokemonIndex}`}>
+            <SimpleGrid minChildWidth="500px" spacing={5}>
+                {AllData.results?.map(pokemon => {
+                    let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
+                    let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
+                    return (
+                        <Flex justify={'center'}>
+                            <Stack
+                                borderWidth="1px"
+                                borderRadius="lg"
+                                w={{ sm: '250px', md: '500px' }}
+                                height={{ sm: '350px', md: '20rem' }}
+                                direction={{ base: 'column', md: 'row' }}
+                                boxShadow={'2xl'}
+                                padding={4}>
+                                <Flex bg="blue.200">
+                                    <Image
+                                        objectFit="fill"
+                                        boxSize="100%"
+                                        src={
+                                            image
+                                        }
+                                    />
+                                </Flex>
 
-                                                                    <Button
-                                                                    >
-                                                                        View Stats
-                                                                    </Button>
-                                                                </Link>
-                                                            </HStack>
+                                <Stack
+                                    flex={1}
+                                    flexDirection="column"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    p={1}
+                                    pt={2}>
+                                    <Heading fontSize={'2xl'} fontFamily={'body'}>
+                                        {pokemon.name}
+                                    </Heading>
+                                    <HStack>
+                                        <Button onClick={() => favouritePokemon(pokemonIndex)}
+                                            boxShadow={
+                                                '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                            }
+                                            _hover={{
+                                                bg: 'blue.500',
+                                            }}
+                                            _focus={{
+                                                bg: 'blue.500',
+                                            }}
+                                            leftIcon={<StarIcon />}>
+                                            favorite
+                                        </Button>
+                                        <Link to={`/dashboard/search/${pokemonIndex}`}>
 
-                                                        </Stack>
-                                                    </Stack>
-                                                </Flex>
-                                                
-                                           
-                                )
-                            })}
-                            
-                        </SimpleGrid>
-                        
-                        
+                                            <Button
+                                            >
+                                                View Stats
+                                            </Button>
+                                        </Link>
+                                    </HStack>
+
+                                </Stack>
+                            </Stack>
+                        </Flex>
+
+
+                    )
+                })}
+
+            </SimpleGrid>
+
+
         </>
     );
 }
