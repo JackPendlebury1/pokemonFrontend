@@ -22,7 +22,6 @@ import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { ErrorMessage } from '../components/ErrorMessage';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function Dashboard() {
 
@@ -31,7 +30,6 @@ function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
-    const [newPokemon, updatePokemon] = useState([]);
 
     const fetchDataAll = async (url) => {
 
@@ -44,7 +42,6 @@ function Dashboard() {
             let data = await response.json();
 
             setAllData(data)
-            updatePokemon(data)
         }
     }
 
@@ -86,15 +83,7 @@ function Dashboard() {
         fetchDataAll(AllData.previous)
     }
 
-    function handleOnDragEnd(result) {
-        if (!result.destination) return;
-    
-        const items = Array.from(newPokemon);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-    
-        updatePokemon(items);
-      }
+   
     
 
     return (
@@ -146,7 +135,7 @@ function Dashboard() {
             <Heading p='5'>PokeDex</Heading>
             
                         <SimpleGrid columns={1} spacing={5}>
-                            {newPokemon.results?.map((pokemon, index)  => {
+                            {AllData.results?.map(pokemon  => {
                                 let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                                 let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
                                 return (

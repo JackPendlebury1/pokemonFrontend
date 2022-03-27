@@ -16,11 +16,15 @@ import {
     ModalCloseButton,
     useDisclosure,
     HStack,
+    InputGroup,
+    Input,
+    InputLeftElement
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon, SearchIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
 import { UserCard } from '../components/UserCard';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export const FavouritePokemon = () => {
 
@@ -81,6 +85,16 @@ export const FavouritePokemon = () => {
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
+    function handleOnDragEnd(result) {
+        if (!result.destination) return;
+    
+        const items = Array.from(AllData);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+    
+        AllData(items);
+      }
+
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -121,6 +135,7 @@ export const FavouritePokemon = () => {
                                 <SimpleGrid minChildWidth="500px" spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
                                     <UserCard />
                                     {AllData?.map((pokemon, index) => {
+                                        let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                                         return (
                                             <Draggable key={pokemonIndex} draggableId={pokemonIndex} index={index}>
                                                 {(provided) => (
