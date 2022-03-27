@@ -134,7 +134,7 @@ function Dashboard() {
 
             <Heading p='5'>PokeDex</Heading>
             
-                        <SimpleGrid columns={1} spacing={5}>
+                        <SimpleGrid minChildWidth="500px" spacing={5}>
                             {AllData.results?.map(pokemon  => {
                                 let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                                 let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"

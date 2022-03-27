@@ -92,7 +92,7 @@ export const FavouritePokemon = () => {
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
     
-        AllData(items);
+        setAllData(items);
       }
 
     return (
@@ -132,7 +132,7 @@ export const FavouritePokemon = () => {
                     <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="Pokemon">
                             {(provided) =>
-                                <SimpleGrid minChildWidth="500px" spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
+                                <SimpleGrid columns={1} spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
                                     <UserCard />
                                     {AllData?.map((pokemon, index) => {
                                         return (
