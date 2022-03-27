@@ -132,7 +132,7 @@ export const FavouritePokemon = () => {
                     <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="Pokemon">
                             {(provided) =>
-                                <SimpleGrid columns={1} spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
+                                <SimpleGrid columns={3} spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
                                     <UserCard />
                                     {AllData?.map((pokemon, index) => {
                                         return (
