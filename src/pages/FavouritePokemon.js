@@ -18,9 +18,9 @@ import {
     HStack,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { ArrowBackIcon, StarIcon } from '@chakra-ui/icons'
+import { ArrowBackIcon, StarIcon, SearchIcon } from '@chakra-ui/icons'
 import Cookies from 'js-cookie';
-import {UserCard} from '../components/UserCard';
+import { UserCard } from '../components/UserCard';
 
 export const FavouritePokemon = () => {
 
@@ -74,7 +74,7 @@ export const FavouritePokemon = () => {
             console.error("Cannot Find Favourites")
         }
 
-    }       
+    }
 
     useEffect(() => {
         fetchFavourites();
@@ -108,74 +108,64 @@ export const FavouritePokemon = () => {
                 show &&
                 <>
                     <Heading p='5'>Favourites</Heading>
-                    <SimpleGrid minChildWidth="500px" spacing={5}>
-                        <UserCard/>
-                        {AllData?.map(pokemon => {
-                            return (
-                                <>
-                                    <Center py={6}>
-                                        <Stack
-                                            borderWidth="1px"
-                                            borderRadius="lg"
-                                            w={{ sm: '250px', md: '500px' }}
-                                            height={{ sm: '280px', md: '20rem' }}
-                                            direction={{ base: 'column', md: 'row' }}
-                                            boxShadow={'2xl'}
-                                            padding={4}>
-                                            <Flex flex={1} bg="blue.200">
-                                                <Image
-                                                    objectFit="cover"
-                                                    boxSize="100%"
-                                                    src={
-                                                        pokemon.sprites.front_shiny
-                                                    }
-                                                />
-                                            </Flex>
-
-                                            <Stack
-                                                flex={1}
-                                                flexDirection="column"
-                                                justifyContent="center"
-                                                alignItems="center"
-                                                p={1}
-                                                pt={2}>
-                                                <Heading fontSize={'2xl'} fontFamily={'body'}>
-                                                    {pokemon.name}
-                                                </Heading>
-                                                <HStack >
-                                                    <Button onClick={() => unfavourite(pokemon.id)}
-                                                        boxShadow={
-                                                            '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                                        }
-                                                        _hover={{
-                                                            bg: 'blue.500',
-                                                        }}
-                                                        _focus={{
-                                                            bg: 'blue.500',
-                                                        }}
-                                                        leftIcon={<StarIcon />}>
-                                                        Unfavorite
-                                                    </Button>
-                                                    <Link to={`/dashboard/search/${pokemon.id}`}>
-
-                                                        <Button
-                                                        >
-                                                            View Stats
-                                                        </Button>
-                                                    </Link>
-                                                </HStack>
-
-                                            </Stack>
-                                        </Stack>
-                                    </Center>
-
-                                </>
-                            )
-                        })}
-
-
-
-                    </SimpleGrid>
+                    <InputGroup>
+                        <InputLeftElement
+                            pointerEvents='none'
+                            children={<SearchIcon color='gray.300' />}
+                        />
+                        <Input  placeholder='Search' />
+                    </InputGroup>
+                    <DragDropContext onDragEnd={handleOnDragEnd}>
+                        <Droppable droppableId="Pokemon">
+                            {(provided) =>
+                                <SimpleGrid minChildWidth="500px" spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
+                                    <UserCard />
+                                    {AllData?.map((pokemon, index) => {
+                                        return (
+                                            <Draggable key={pokemonIndex} draggableId={pokemonIndex} index={index}>
+                                                {(provided) => (
+                                                    <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                        <Center py={6}>
+                                                            <Stack
+                                                                borderWidth="1px"
+                                                                borderRadius="lg"
+                                                                w={{ sm: '250px', md: '500px' }}
+                                                                height={{ sm: '280px', md: '20rem' }}
+                                                                direction={{ base: 'column', md: 'row' }}
+                                                                boxShadow={'2xl'}
+                                                                padding={4}>
+                                                                <Flex flex={1} bg="blue.200">
+                                                                    <Image objectFit="cover" boxSize="100%" src={pokemon.sprites.front_shiny} />
+                                                                </Flex>
+                                                                <Stack flex={1} flexDirection="column" justifyContent="center" alignItems="center" p={1} pt={2}>
+                                                                    <Heading fontSize={'2xl'} fontFamily={'body'}>
+                                                                        {pokemon.name}
+                                                                    </Heading>
+                                                                    <HStack >
+                                                                        <Button onClick={() => unfavourite(pokemon.id)}
+                                                                            boxShadow={'0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'}
+                                                                            _hover={{ bg: 'blue.500', }}
+                                                                            _focus={{ bg: 'blue.500', }}
+                                                                            leftIcon={<StarIcon />}>
+                                                                            Unfavorite
+                                                                        </Button>
+                                                                        <Link to={`/dashboard/search/${pokemon.id}`}>
+                                                                            <Button>View Stats</Button>
+                                                                        </Link>
+                                                                    </HStack>
+                                                                </Stack>
+                                                            </Stack>
+                                                        </Center>
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        )
+                                    })}
+                                    {provided.placeholder}
+                                </SimpleGrid>
+                            }
+                        </Droppable>
+                    </DragDropContext>
                 </>
             }
 

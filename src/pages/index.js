@@ -27,7 +27,6 @@ export default function LandingPage() {
         </Icon>
         <chakra.h3
           mb={3}
-          mb={3}
           fontSize="lg"
           lineHeight="shorter"
           fontWeight="bold"

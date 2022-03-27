@@ -31,6 +31,8 @@ function Dashboard() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const history = useHistory();
     const [show, toggleShow] = useState(false);
+    const [newPokemon, updatePokemon] = useState([]);
+
     const fetchDataAll = async (url) => {
 
         const response = await fetch(url, {
@@ -42,6 +44,7 @@ function Dashboard() {
             let data = await response.json();
 
             setAllData(data)
+            updatePokemon(data)
         }
     }
 
@@ -82,6 +85,17 @@ function Dashboard() {
     function previousPage() {
         fetchDataAll(AllData.previous)
     }
+
+    function handleOnDragEnd(result) {
+        if (!result.destination) return;
+    
+        const items = Array.from(newPokemon);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+    
+        updatePokemon(items);
+      }
+    
 
     return (
         <>
@@ -130,18 +144,13 @@ function Dashboard() {
 
 
             <Heading p='5'>PokeDex</Heading>
-            <DragDropContext>
-                <Droppable droppableId="Pokemon">
-                    {(provided) =>
-                        <SimpleGrid minChildWidth="500px" spacing={5} {...provided.droppableProps} ref={provided.innerRef}>
-
-                            {AllData.results?.map(({ pokemon }, index) => {
+            
+                        <SimpleGrid columns={1} spacing={5}>
+                            {newPokemon.results?.map((pokemon, index)  => {
                                 let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                                 let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
                                 return (
-                                    <Draggable key={pokemonIndex} draggableId={index} index={index}>
-                                        {(provided) => (
-                                            <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                    
                                                 <Flex justify={'center'}>
                                                     <Stack
                                                         borderWidth="1px"
@@ -197,16 +206,14 @@ function Dashboard() {
                                                         </Stack>
                                                     </Stack>
                                                 </Flex>
-                                                {provided.placeholder}
-                                            </div>
-                                        )}
-                                    </Draggable>
+                                                
+                                           
                                 )
                             })}
+                            
                         </SimpleGrid>
-                    }
-                </Droppable>
-            </DragDropContext>
+                        
+                        
         </>
     );
 }
