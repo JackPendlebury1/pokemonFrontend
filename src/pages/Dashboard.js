@@ -110,12 +110,11 @@ function Dashboard() {
             </Modal>
 
             <Stack direction='row' spacing={4} align='center'>
-                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none' }} />
-                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none' }} />
+                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none', sm: 'none' }} />
+                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none', sm: 'none' }} />
                 <Link to='/dashboard/favourites/'>
-                    <IconButton icon={<StarIcon />} display={{ md: 'none' }} />
+                    <IconButton icon={<StarIcon />} display={{ md: 'none', sm: 'none' }} />
                 </Link>
-
 
                 <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
                     Previous Page
