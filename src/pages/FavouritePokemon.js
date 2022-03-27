@@ -129,10 +129,11 @@ export const FavouritePokemon = () => {
                         />
                         <Input  placeholder='Search' />
                     </InputGroup>
+                    <SimpleGrid minChildWidth="500px" spacing={5}>
                     <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="Pokemon">
                             {(provided) =>
-                                <SimpleGrid columns={3} spacing={5}  {...provided.droppableProps} ref={provided.innerRef}>
+                                <div {...provided.droppableProps} ref={provided.innerRef}>
                                     <UserCard />
                                     {AllData?.map((pokemon, index) => {
                                         return (
@@ -176,10 +177,11 @@ export const FavouritePokemon = () => {
                                         )
                                     })}
                                     {provided.placeholder}
-                                </SimpleGrid>
+                                </div>
                             }
                         </Droppable>
                     </DragDropContext>
+                    </SimpleGrid>
                 </>
             }
 
