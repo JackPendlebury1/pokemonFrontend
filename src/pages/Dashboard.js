@@ -22,6 +22,7 @@ import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 function Dashboard() {
 
@@ -39,7 +40,7 @@ function Dashboard() {
             console.log("something failed")
         } else {
             let data = await response.json();
-            
+
             setAllData(data)
         }
     }
@@ -63,8 +64,8 @@ function Dashboard() {
         fetchDataAll(url);
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
-    const favouritePokemon = async (index) => {
-        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${index}`,
+    const favouritePokemon = async (pokemonIndex) => {
+        const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${pokemonIndex}`,
             { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
         if (response2.ok) {
             onOpen()
@@ -127,73 +128,85 @@ function Dashboard() {
                 </Link>
             </Stack>
 
+
             <Heading p='5'>PokeDex</Heading>
-            <SimpleGrid minChildWidth="500px" spacing={5}>
+            <DragDropContext>
+                <Droppable droppableId="Pokemon">
+                    {(provided) =>
+                        <SimpleGrid minChildWidth="500px" spacing={5} {...provided.droppableProps} ref={provided.innerRef}>
 
-                {AllData.results?.map(pokemon => {
-                    let index = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
-                    let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + index + ".png?raw=true"
-                    return (
-                        <>
-                            <Flex justify={'center'}>
-                                <Stack
-                                    borderWidth="1px"
-                                    borderRadius="lg"
-                                    w={{ sm: '250px', md: '500px' }}
-                                    height={{ sm: '350px', md: '20rem' }}
-                                    direction={{ base: 'column', md: 'row' }}
-                                    boxShadow={'2xl'}
-                                    padding={4}>
-                                    <Flex bg="blue.200">
-                                        <Image
-                                            objectFit="cover"
-                                            boxSize="100%"
-                                            src={
-                                                image
-                                            }
-                                        />
-                                    </Flex>
+                            {AllData.results?.map(({ pokemon }, index) => {
+                                let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
+                                let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
+                                return (
+                                    <Draggable key={pokemonIndex} draggableId={index} index={index}>
+                                        {(provided) => (
+                                            <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                <Flex justify={'center'}>
+                                                    <Stack
+                                                        borderWidth="1px"
+                                                        borderRadius="lg"
+                                                        w={{ sm: '250px', md: '500px' }}
+                                                        height={{ sm: '350px', md: '20rem' }}
+                                                        direction={{ base: 'column', md: 'row' }}
+                                                        boxShadow={'2xl'}
+                                                        padding={4}>
+                                                        <Flex bg="blue.200">
+                                                            <Image
+                                                                objectFit="cover"
+                                                                boxSize="100%"
+                                                                src={
+                                                                    image
+                                                                }
+                                                            />
+                                                        </Flex>
 
-                                    <Stack
-                                        flex={1}
-                                        flexDirection="column"
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        p={1}
-                                        pt={2}>
-                                        <Heading fontSize={'2xl'} fontFamily={'body'}>
-                                            {pokemon.name}
-                                        </Heading>
-                                        <HStack>
-                                            <Button onClick={() => favouritePokemon(index)}
-                                                boxShadow={
-                                                    '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                                }
-                                                _hover={{
-                                                    bg: 'blue.500',
-                                                }}
-                                                _focus={{
-                                                    bg: 'blue.500',
-                                                }}
-                                                leftIcon={<StarIcon />}>
-                                                favorite
-                                            </Button>
-                                            <Link to={`/dashboard/search/${index}`}>
+                                                        <Stack
+                                                            flex={1}
+                                                            flexDirection="column"
+                                                            justifyContent="center"
+                                                            alignItems="center"
+                                                            p={1}
+                                                            pt={2}>
+                                                            <Heading fontSize={'2xl'} fontFamily={'body'}>
+                                                                {pokemon.name}
+                                                            </Heading>
+                                                            <HStack>
+                                                                <Button onClick={() => favouritePokemon(pokemonIndex)}
+                                                                    boxShadow={
+                                                                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                                                    }
+                                                                    _hover={{
+                                                                        bg: 'blue.500',
+                                                                    }}
+                                                                    _focus={{
+                                                                        bg: 'blue.500',
+                                                                    }}
+                                                                    leftIcon={<StarIcon />}>
+                                                                    favorite
+                                                                </Button>
+                                                                <Link to={`/dashboard/search/${pokemonIndex}`}>
 
-                                                <Button
-                                                >
-                                                    View Stats
-                                                </Button>
-                                            </Link>
-                                        </HStack>
+                                                                    <Button
+                                                                    >
+                                                                        View Stats
+                                                                    </Button>
+                                                                </Link>
+                                                            </HStack>
 
-                                    </Stack>
-                                </Stack>
-                            </Flex>
-                        </>
-                    )
-                })}
-            </SimpleGrid>
+                                                        </Stack>
+                                                    </Stack>
+                                                </Flex>
+                                                {provided.placeholder}
+                                            </div>
+                                        )}
+                                    </Draggable>
+                                )
+                            })}
+                        </SimpleGrid>
+                    }
+                </Droppable>
+            </DragDropContext>
         </>
     );
 }

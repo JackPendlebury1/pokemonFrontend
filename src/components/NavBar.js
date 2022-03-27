@@ -22,7 +22,7 @@ import Cookies from 'js-cookie';
 
 const Links = ['Home', 'Read Me'];
 
-const NavLink = ({ children }) => (
+const NavLink =({ children }) => (
   <Link
     px={2}
     py={1}
