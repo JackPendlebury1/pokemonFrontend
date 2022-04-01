@@ -146,7 +146,7 @@ export const FavouritePokemon = () => {
                                                                 <Stack
                                                                     borderWidth="1px"
                                                                     borderRadius="lg"
-                                                                    w={{ sm: '250px', md: '450px' }}
+                                                                    w={{ sm: '30px', md: '450px' }}
                                                                     height={{ sm: '350px', md: '20rem' }}
                                                                     direction={{ base: 'column', md: 'row' }}
                                                                     boxShadow={'2xl'}

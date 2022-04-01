@@ -81,6 +81,7 @@ function Dashboard() {
         if (response2.ok) {
             onOpen()
             toggleShow2(true)
+            toggleShow1(false)
         } else if (response2.status === 400) {
             toggleShow(true)
             setTimeout(() => { toggleShow(false) }, 4000);
@@ -97,6 +98,7 @@ function Dashboard() {
             let data = await response.json();
             setPokemonStats(data)
             toggleShow1(true)
+            toggleShow2(false)
             onOpen()
         }
     }
@@ -115,21 +117,6 @@ function Dashboard() {
                 <ErrorMessage Title={"Error"} Color={"red.500"} Error={"You have already favourited this pokemon!"} />
             }
 
-            {/* <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Favourited</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        Added new favourite Pokemon
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal> */}
                 <Modal isOpen={isOpen} size='xl' onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
