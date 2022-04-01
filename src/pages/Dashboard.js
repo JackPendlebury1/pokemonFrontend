@@ -147,9 +147,6 @@ function Dashboard() {
                             {show1 &&
                                 <Box justify={'center'}>
                                     <Grid h='500px' templateRows='repeat(2, 1fr)' templateColumns='repeat(5, 1fr)'>
-                                        <GridItem rowSpan={2} colSpan={1}>
-                                            <Image boxSize="100%" src={pokemonStats.sprites.front_shiny}></Image>
-                                        </GridItem>
                                         <GridItem colSpan={2} >
                                             <Container>
                                                 <Heading>{pokemonStats.name}</Heading>

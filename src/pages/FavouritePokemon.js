@@ -129,10 +129,11 @@ export const FavouritePokemon = () => {
                         />
                         <Input placeholder='Search' />
                     </InputGroup>
-                    
-                        <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <SimpleGrid minChildWidth="450px" spacing={5}>
-                            <Droppable droppableId="Pokemon">
+
+                    <DragDropContext onDragEnd={handleOnDragEnd}>
+
+                        <Droppable droppableId="Pokemon">
+                            <SimpleGrid minChildWidth="450px" spacing={5}>
                                 {(provided) =>
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
                                         <UserCard />
@@ -150,7 +151,7 @@ export const FavouritePokemon = () => {
                                                                     direction={{ base: 'column', md: 'row' }}
                                                                     boxShadow={'2xl'}
                                                                     padding={2}>
-                                                                        {/*  */}
+                                                                    {/*  */}
                                                                     <Flex bg="blue.200">
                                                                         <Image
                                                                             objectFit="fill"
@@ -188,10 +189,11 @@ export const FavouritePokemon = () => {
                                         {provided.placeholder}
                                     </div>
                                 }
-                            </Droppable>
                             </SimpleGrid>
-                        </DragDropContext>
-                    
+                        </Droppable>
+
+                    </DragDropContext>
+
                 </>
             }
 
