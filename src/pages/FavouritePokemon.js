@@ -149,7 +149,8 @@ export const FavouritePokemon = () => {
                                                                     height={{ sm: '350px', md: '20rem' }}
                                                                     direction={{ base: 'column', md: 'row' }}
                                                                     boxShadow={'2xl'}
-                                                                    padding={4}>
+                                                                    >
+                                                                        {/* padding={4} */}
                                                                     <Flex bg="blue.200">
                                                                         <Image
                                                                             objectFit="fill"
