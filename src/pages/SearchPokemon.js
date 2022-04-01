@@ -73,14 +73,13 @@ export default function SearchPokemon() {
             {
                 show &&
                 <>
-                    <Box p='10'></Box>
+                    <Box mt='10'></Box>
                     <Stack direction='row' spacing={4} align='center'>
                         <Link to='/dashboard/pokedex/'>
                             <Button leftIcon={<ArrowBackIcon />} colorScheme='teal' variant='solid'>
                                 Back to Pokedex
                             </Button>
                         </Link>
-
                         <Button leftIcon={<StarIcon />} onClick={() => favourite(pokemon.id)} colorScheme='teal' variant='solid'>
                             Favourite
                         </Button>
@@ -90,11 +89,7 @@ export default function SearchPokemon() {
                         </Button>
                     </Stack>
                     <Box justify={'center'}>
-                        <Grid
-                            h='500px'
-                            templateRows='repeat(2, 1fr)'
-                            templateColumns='repeat(5, 1fr)'
-                        >
+                        <Grid h='500px' templateRows='repeat(2, 1fr)' templateColumns='repeat(5, 1fr)'>
                             <GridItem rowSpan={2} colSpan={1}>
                                 <Image boxSize="100%" src={pokemon.sprites.front_shiny}></Image>
                             </GridItem>
@@ -117,30 +112,16 @@ export default function SearchPokemon() {
                             <GridItem colSpan={4} >
                                 <SimpleGrid columns={2}>
                                     <Container>
-                                        <Text>
-                                            ID : {pokemon.id}
-                                        </Text>
-                                        <Text>
-                                            Weight : {pokemon.weight}
-                                        </Text>
-                                        <Text>
-                                            Base Experience : {pokemon.base_experience}
-                                        </Text>
-                                        <Text>
-                                            Base Height : {pokemon.height}
-                                        </Text>
+                                        <Text>ID : {pokemon.id}</Text>
+                                        <Text>Weight : {pokemon.weight}</Text>
+                                        <Text>Base Experience : {pokemon.base_experience}</Text>
+                                        <Text>Base Height : {pokemon.height}</Text>
                                     </Container>
                                     <Container>
-                                        <Text>
-                                            Abilities:
+                                        <Text>Abilities:
                                             {pokemon.abilities.map(i => {
                                                 return (
-                                                    <Tag
-                                                        size='md'
-                                                        borderRadius='full'
-                                                        variant='solid'
-                                                        colorScheme='green'
-                                                    >
+                                                    <Tag size='md' borderRadius='full' variant='solid' colorScheme='green'>
                                                         <TagLabel>{i.ability.name}</TagLabel>
                                                     </Tag>
                                                 )
@@ -149,12 +130,7 @@ export default function SearchPokemon() {
                                             Types:
                                             {pokemon.types.map(i => {
                                                 return (
-                                                    <Tag
-                                                        size='md'
-                                                        borderRadius='full'
-                                                        variant='solid'
-                                                        colorScheme='blue'
-                                                    >
+                                                    <Tag size='md' borderRadius='full' variant='solid' colorScheme='blue'>
                                                         <TagLabel>{i.type.name}</TagLabel>
                                                     </Tag>
                                                 )
@@ -168,10 +144,5 @@ export default function SearchPokemon() {
                 </>
             }
         </>
-
-
-
-
-
     )
 }

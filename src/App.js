@@ -27,9 +27,7 @@ function App() {
     <Router>
       <ChakraProvider>
           <NavBar isLoggedIn={isLoggedIn} user={user}/>
-          <Box mt='10'>
             <Routes user={user}/>
-          </Box>       
       </ChakraProvider>
     </Router>
   );
