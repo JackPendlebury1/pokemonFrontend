@@ -133,8 +133,9 @@ export const FavouritePokemon = () => {
                     <DragDropContext onDragEnd={handleOnDragEnd}>
 
                         <Droppable droppableId="Pokemon">
-                            <SimpleGrid minChildWidth="450px" spacing={5}>
-                                {(provided) =>
+
+                            {(provided) =>
+                                <SimpleGrid minChildWidth="450px" spacing={5}>
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
                                         <UserCard />
                                         {AllData?.map((pokemon, index) => {
@@ -146,7 +147,7 @@ export const FavouritePokemon = () => {
                                                                 <Stack
                                                                     borderWidth="1px"
                                                                     borderRadius="lg"
-                                                                    w={{ sm: '30px', md: '450px' }}
+                                                                    w={{ sm: '250px', md: '450px' }}
                                                                     height={{ sm: '350px', md: '20rem' }}
                                                                     direction={{ base: 'column', md: 'row' }}
                                                                     boxShadow={'2xl'}
@@ -187,9 +188,11 @@ export const FavouritePokemon = () => {
                                             )
                                         })}
                                         {provided.placeholder}
+
                                     </div>
-                                }
-                            </SimpleGrid>
+                                </SimpleGrid>
+                            }
+
                         </Droppable>
 
                     </DragDropContext>
