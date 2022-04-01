@@ -214,22 +214,10 @@ function Dashboard() {
 
 
             <Stack direction='row' spacing={4} align='center'>
-                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()} display={{ md: 'none', sm: 'inline' }} />
-                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} display={{ md: 'none', sm: 'inline' }} />
+                <IconButton icon={<ArrowBackIcon />} as='button' onClick={() => previousPage()}/>
+                <IconButton icon={<ArrowForwardIcon />} onClick={() => nextPage()} />
                 <Link to='/dashboard/favourites/'>
-                    <IconButton icon={<StarIcon />} display={{ md: 'none', sm: 'inline' }} />
-                </Link>
-                <Button leftIcon={<ArrowBackIcon />} onClick={() => previousPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
-                    Previous Page
-                </Button>
-                <Button leftIcon={<ArrowForwardIcon />} onClick={() => nextPage()} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
-                    Next Page
-                </Button>
-                <Spacer></Spacer>
-                <Link to='/dashboard/favourites/'>
-                    <Button leftIcon={<StarIcon />} colorScheme='teal' variant='solid' display={{ sm: 'none', md: 'inline' }}>
-                        favourites
-                    </Button>
+                    <IconButton icon={<StarIcon />}/>
                 </Link>
             </Stack>
             <Heading p='5'>PokeDex</Heading>
