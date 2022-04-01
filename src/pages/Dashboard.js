@@ -130,7 +130,7 @@ function Dashboard() {
                     </ModalFooter>
                 </ModalContent>
             </Modal> */}
-                <Modal isOpen={isOpen} onClose={onClose}>
+                <Modal isOpen={isOpen} size='xl' onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
                         {
