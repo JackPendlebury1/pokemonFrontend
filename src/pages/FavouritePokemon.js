@@ -129,8 +129,9 @@ export const FavouritePokemon = () => {
                         />
                         <Input placeholder='Search' />
                     </InputGroup>
-                    <SimpleGrid minChildWidth="500px" spacing={5}>
+                    
                         <DragDropContext onDragEnd={handleOnDragEnd}>
+                        <SimpleGrid minChildWidth="500px" spacing={5}>
                             <Droppable droppableId="Pokemon">
                                 {(provided) =>
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -187,8 +188,9 @@ export const FavouritePokemon = () => {
                                     </div>
                                 }
                             </Droppable>
+                            </SimpleGrid>
                         </DragDropContext>
-                    </SimpleGrid>
+                    
                 </>
             }
 
