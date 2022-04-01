@@ -205,7 +205,7 @@ function Dashboard() {
                 </Link>
             </Stack>
             <Heading p='5'>PokeDex</Heading>
-            <SimpleGrid minChildWidth="450px" spacing={5}>
+            <SimpleGrid minChildWidth="500px" spacing={5}>
                 {AllData.results?.map(pokemon => {
                     let pokemonIndex = pokemon.url.split("/")[pokemon.url.split("/").length - 2]
                     let image = "https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/" + pokemonIndex + ".png?raw=true"
@@ -213,11 +213,11 @@ function Dashboard() {
                         <Flex justifyContent="center">
                             <Stack borderWidth="1px"
                                 borderRadius="lg"
-                                w={{ sm: '230px', md: '450px' }}
+                                w={{ sm: '250px', md: '500px' }}
                                 height={{ sm: '350px', md: '20rem' }}
                                 direction={{ base: 'column', md: 'row' }}
                                 boxShadow={'2xl'}
-                                padding={2}>
+                                padding={5}>
                                     {/*  */}
                                 <Flex bg="blue.200">
                                     <Image objectFit="fill" boxSize="100%" src={image} />
