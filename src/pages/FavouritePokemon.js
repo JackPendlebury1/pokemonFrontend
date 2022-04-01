@@ -131,7 +131,7 @@ export const FavouritePokemon = () => {
                     </InputGroup>
                     
                         <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <SimpleGrid minChildWidth="500px" spacing={5}>
+                        <SimpleGrid minChildWidth="450px" spacing={5}>
                             <Droppable droppableId="Pokemon">
                                 {(provided) =>
                                     <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -141,16 +141,16 @@ export const FavouritePokemon = () => {
                                                 <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
                                                     {(provided) => (
                                                         <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                            <Flex justify={'center'}>
+                                                            <Flex justifyContent="center">
                                                                 <Stack
                                                                     borderWidth="1px"
                                                                     borderRadius="lg"
-                                                                    w={{ sm: '250px', md: '500px' }}
+                                                                    w={{ sm: '250px', md: '450px' }}
                                                                     height={{ sm: '350px', md: '20rem' }}
                                                                     direction={{ base: 'column', md: 'row' }}
                                                                     boxShadow={'2xl'}
-                                                                    >
-                                                                        {/* padding={4} */}
+                                                                    padding={2}>
+                                                                        {/*  */}
                                                                     <Flex bg="blue.200">
                                                                         <Image
                                                                             objectFit="fill"
