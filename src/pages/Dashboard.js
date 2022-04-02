@@ -65,7 +65,7 @@ function Dashboard() {
                 history.push("/");
             } else {
                 let data = await response1.json();
-                localStorage.setItem('id', data.id);
+                localStorage.setItem("id", data.id);
             }
         }
         fetchData();
