@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
-            { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
+            { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem("login") } });
         if (response.ok) {
           let data = await response.json();
           setUser(data)
