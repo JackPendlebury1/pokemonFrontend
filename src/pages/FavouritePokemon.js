@@ -129,7 +129,7 @@ export const FavouritePokemon = () => {
                         <Input placeholder='Search' />
                     </InputGroup>
                     <UserCard />
-                    <SimpleGrid alignItems='baseline' columns={3} spacing={10}>
+                    <SimpleGrid columns={3} spacing={10}>
                         <div justify="center">
                             <Heading>To watch</Heading>
                         </div>
@@ -145,7 +145,7 @@ export const FavouritePokemon = () => {
                                                     <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
                                                         {(provided) => (
                                                             <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                                <Flex justifyContent="center">
+                                                                <Flex>
                                                                     <Stack
                                                                         borderWidth="1px"
                                                                         borderRadius="lg"
