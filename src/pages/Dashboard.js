@@ -59,14 +59,14 @@ function Dashboard() {
             const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
                 method: 'GET',
                 headers: {
-                    "Authorization": Cookies.get("login")
+                    "Authorization": localStorage.getItem('login')
                 }
             })
             if (!response1.ok) {
                 history.push("/");
             } else {
                 let data = await response1.json();
-                Cookies.set("id", data.id, { sameSite: 'Strict' })
+                localStorage.setItem('id', data.id);
             }
         }
         fetchData();
@@ -75,7 +75,7 @@ function Dashboard() {
 
     const favouritePokemon = async (pokemonIndex) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${pokemonIndex}`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": Cookies.get("login") } });
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem('login') } });
         if (response2.ok) {
             onOpen()
             toggleShow2(true)

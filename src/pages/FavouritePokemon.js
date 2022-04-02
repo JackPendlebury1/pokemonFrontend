@@ -36,7 +36,7 @@ export const FavouritePokemon = () => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
             method: 'POST',
             headers: {
-                "Authorization": Cookies.get("login")
+                "Authorization": localStorage.getItem('login')
             }
         });
         if (response2.status === 200) {
@@ -66,7 +66,7 @@ export const FavouritePokemon = () => {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${Cookies.get("id")}/`, {
             method: 'GET',
             headers: {
-                "Authorization": Cookies.get("login")
+                "Authorization": localStorage.getItem('login')
             }
         });
         if (response.status === 200) {

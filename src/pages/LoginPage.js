@@ -41,7 +41,7 @@ export default function SimpleCard() {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}token`, { method: 'POST', body: formData });
         if (response.status === 200) {
             let token = await response.json();
-            Cookies.set('login', token.token_type + " " + token.access_token, { sameSite: 'Strict' })
+            localStorage.setItem('login', token.token_type + " " + token.access_token);
             history.push("/dashboard/pokedex");
             window.location.reload();
         } else {
