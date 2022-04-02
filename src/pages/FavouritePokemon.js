@@ -128,80 +128,77 @@ export const FavouritePokemon = () => {
                         />
                         <Input placeholder='Search' />
                     </InputGroup>
+                    <UserCard />
                     <SimpleGrid columns={3} spacing={5}>
-                        
-                        <div>
+                        <div justifyContent="center">
                             <Heading>To watch</Heading>
                         </div>
-                        <div>
-                        <Heading>Watched Movies</Heading>
-                    <DragDropContext onDragEnd={handleOnDragEnd}>
-                        <Droppable droppableId="Pokemon">
-                            {(provided) =>
-                                <div {...provided.droppableProps} ref={provided.innerRef}>
-                                        <UserCard />
-                                        {WatchedData?.map((pokemon, index) => {
-                                            return (
-                                                <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
-                                                    {(provided) => (
-                                                        <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                            <Flex justifyContent="center">
-                                                                <Stack
-                                                                    borderWidth="1px"
-                                                                    borderRadius="lg"
-                                                                    w={{ sm: '250px', md: '500px' }}
-                                                                    height={{ sm: '350px', md: '20rem' }}
-                                                                    direction={{ base: 'column', md: 'row' }}
-                                                                    boxShadow={'2xl'}
-                                                                    padding={2}>
-                                                                    {/*  */}
-                                                                    <Flex bg="blue.200">
-                                                                        <Image
-                                                                            objectFit="fill"
-                                                                            boxSize="100%"
-                                                                            src={
-                                                                                pokemon.sprites.front_shiny
-                                                                            }
-                                                                        />
-                                                                    </Flex>
+                        <div justifyContent="center">
+                            <Heading>Watched Movies</Heading>
+                            <DragDropContext onDragEnd={handleOnDragEnd}>
+                                <Droppable droppableId="Pokemon">
+                                    {(provided) =>
+                                        <div {...provided.droppableProps} ref={provided.innerRef}>
 
-                                                                    <Stack flex={1} flexDirection="column" justifyContent="center" alignItems="center" p={1} pt={2}>
-                                                                        <Heading fontSize={'2xl'} fontFamily={'body'}>
-                                                                            {pokemon.name}
-                                                                        </Heading>
-                                                                        <HStack >
-                                                                            <Button onClick={() => unfavourite(pokemon.id)}
-                                                                                boxShadow={'0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'}
-                                                                                _hover={{ bg: 'blue.500', }}
-                                                                                _focus={{ bg: 'blue.500', }}
-                                                                                leftIcon={<StarIcon />}>
-                                                                                Unfavorite
-                                                                            </Button>
-                                                                            <Link to={`/dashboard/search/${pokemon.id}`}>
-                                                                                <Button>View Stats</Button>
-                                                                            </Link>
-                                                                        </HStack>
+                                            {WatchedData?.map((pokemon, index) => {
+                                                return (
+                                                    <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
+                                                        {(provided) => (
+                                                            <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                                <Flex justifyContent="center">
+                                                                    <Stack
+                                                                        borderWidth="1px"
+                                                                        borderRadius="lg"
+                                                                        w={{ sm: '250px', md: '500px' }}
+                                                                        height={{ sm: '350px', md: '20rem' }}
+                                                                        direction={{ base: 'column', md: 'row' }}
+                                                                        boxShadow={'2xl'}
+                                                                        padding={2}>
+                                                                        {/*  */}
+                                                                        <Flex bg="blue.200">
+                                                                            <Image
+                                                                                objectFit="fill"
+                                                                                boxSize="100%"
+                                                                                src={
+                                                                                    pokemon.sprites.front_shiny
+                                                                                }
+                                                                            />
+                                                                        </Flex>
+
+                                                                        <Stack flex={1} flexDirection="column" justifyContent="center" alignItems="center" p={1} pt={2}>
+                                                                            <Heading fontSize={'2xl'} fontFamily={'body'}>
+                                                                                {pokemon.name}
+                                                                            </Heading>
+                                                                            <HStack >
+                                                                                <Button onClick={() => unfavourite(pokemon.id)}
+                                                                                    boxShadow={'0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'}
+                                                                                    _hover={{ bg: 'blue.500', }}
+                                                                                    _focus={{ bg: 'blue.500', }}
+                                                                                    leftIcon={<StarIcon />}>
+                                                                                    Unfavorite
+                                                                                </Button>
+                                                                                <Link to={`/dashboard/search/${pokemon.id}`}>
+                                                                                    <Button>View Stats</Button>
+                                                                                </Link>
+                                                                            </HStack>
+                                                                        </Stack>
                                                                     </Stack>
-                                                                </Stack>
-                                                            </Flex>
-                                                        </div>
-                                                    )}
-                                                </Draggable>
-                                            )
-                                        })}
-                                        {provided.placeholder}
-                                </div>
-                            }
+                                                                </Flex>
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            })}
+                                            {provided.placeholder}
+                                        </div>
+                                    }
 
-                        </Droppable>
+                                </Droppable>
 
-                    </DragDropContext>
+                            </DragDropContext>
                         </div>
-                        <div>
-                        <Heading>Watched</Heading>
-                        </div>
-                        <div>
-                        <Heading>Remove</Heading>
+                        <div justifyContent="center">
+                            <Heading>Watched</Heading>
                         </div>
                     </SimpleGrid>
                 </>
