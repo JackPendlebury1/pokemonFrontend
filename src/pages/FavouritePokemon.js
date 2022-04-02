@@ -63,7 +63,7 @@ export const FavouritePokemon = () => {
     }
 
     const fetchFavourites = async () => {
-        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${Cookies.get("id")}/`, {
+        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${localStorage.getItem("id")}/`, {
             method: 'GET',
             headers: {
                 "Authorization": localStorage.getItem('login')
