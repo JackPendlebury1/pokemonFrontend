@@ -129,7 +129,7 @@ export const FavouritePokemon = () => {
                         <Input placeholder='Search' />
                     </InputGroup>
                     <UserCard />
-                    <SimpleGrid justifyContent="center" columns={3} spacing={10}>
+                    <SimpleGrid alignItems='baseline' columns={3} spacing={10}>
                         <div justify="center">
                             <Heading>To watch</Heading>
                         </div>
