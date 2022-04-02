@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
     Button,
-    Center,
     Flex,
     Heading,
     Image,
@@ -18,7 +17,7 @@ import {
     HStack,
     InputGroup,
     Input,
-    InputLeftElement
+    InputLeftElement,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon, SearchIcon } from '@chakra-ui/icons'
@@ -28,7 +27,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 export const FavouritePokemon = () => {
 
-    const [AllData, setAllData] = useState([]);
+    const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
     let favouritesList
@@ -57,7 +56,7 @@ export const FavouritePokemon = () => {
                 console.log("something failed")
             } else {
                 let data = await response1.json();
-                setAllData(old => [...old, data])
+                setWatchedData(old => [...old, data])
                 toggleShow(true)
             }
         });
@@ -88,11 +87,11 @@ export const FavouritePokemon = () => {
     function handleOnDragEnd(result) {
         if (!result.destination) return;
 
-        const items = Array.from(AllData);
+        const items = Array.from(WatchedData);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
 
-        setAllData(items);
+        setWatchedData(items);
     }
 
     return (
@@ -121,7 +120,7 @@ export const FavouritePokemon = () => {
             {
                 show &&
                 <>
-                    <Heading p='5'>Favourites</Heading>
+                    <Heading p='5'>My Movies</Heading>
                     <InputGroup>
                         <InputLeftElement
                             pointerEvents='none'
@@ -129,13 +128,19 @@ export const FavouritePokemon = () => {
                         />
                         <Input placeholder='Search' />
                     </InputGroup>
-
+                    <SimpleGrid columns={3} spacing={5}>
+                        
+                        <div>
+                            <Heading>To watch</Heading>
+                        </div>
+                        <div>
+                        <Heading>Watched Movies</Heading>
                     <DragDropContext onDragEnd={handleOnDragEnd}>
                         <Droppable droppableId="Pokemon">
                             {(provided) =>
-                                <SimpleGrid minChildWidth="500px" spacing={5} {...provided.droppableProps} ref={provided.innerRef}>
+                                <div {...provided.droppableProps} ref={provided.innerRef}>
                                         <UserCard />
-                                        {AllData?.map((pokemon, index) => {
+                                        {WatchedData?.map((pokemon, index) => {
                                             return (
                                                 <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
                                                     {(provided) => (
@@ -185,13 +190,17 @@ export const FavouritePokemon = () => {
                                             )
                                         })}
                                         {provided.placeholder}
-                                </SimpleGrid>
+                                </div>
                             }
 
                         </Droppable>
 
                     </DragDropContext>
-
+                        </div>
+                        <div>
+                        <Heading>Watched</Heading>
+                        </div>
+                    </SimpleGrid>
                 </>
             }
 
