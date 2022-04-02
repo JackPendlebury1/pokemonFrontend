@@ -196,7 +196,7 @@ export const FavouritePokemon = () => {
 
                             </DragDropContext>
                         </div>
-                        <div justifyContent="center">
+                        <div justify="center">
                             <Heading>Watched</Heading>
                         </div>
                     </SimpleGrid>
