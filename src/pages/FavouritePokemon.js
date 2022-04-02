@@ -200,6 +200,9 @@ export const FavouritePokemon = () => {
                         <div>
                         <Heading>Watched</Heading>
                         </div>
+                        <div>
+                        <Heading>Remove</Heading>
+                        </div>
                     </SimpleGrid>
                 </>
             }
