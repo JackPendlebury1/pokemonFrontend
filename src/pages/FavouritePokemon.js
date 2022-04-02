@@ -130,16 +130,15 @@ export const FavouritePokemon = () => {
                     </InputGroup>
                     <UserCard />
                     <SimpleGrid columns={3} spacing={5}>
-                        <div justifyContent="center">
+                        <div justify="center">
                             <Heading>To watch</Heading>
                         </div>
-                        <div justifyContent="center">
+                        <div justify="center">
                             <Heading>Watched Movies</Heading>
                             <DragDropContext onDragEnd={handleOnDragEnd}>
                                 <Droppable droppableId="Pokemon">
                                     {(provided) =>
                                         <div {...provided.droppableProps} ref={provided.innerRef}>
-
                                             {WatchedData?.map((pokemon, index) => {
                                                 return (
                                                     <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
