@@ -134,12 +134,12 @@ export const FavouritePokemon = () => {
                             <Heading>To watch</Heading>
                         </div>
                         <div justify="center">
-                            
+                            <Heading justify="center">Watched Movies</Heading>
                             <DragDropContext onDragEnd={handleOnDragEnd}>
                                 <Droppable droppableId="Pokemon">
                                     {(provided) =>
                                         <div {...provided.droppableProps} ref={provided.innerRef}>
-                                            <Heading>Watched Movies</Heading>
+                                            
                                             {WatchedData?.map((pokemon, index) => {
                                                 return (
                                                     <Draggable key={String(index + 1)} draggableId={String(index + 1)} index={index}>
