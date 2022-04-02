@@ -20,7 +20,6 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from '@chakra-ui/react';
-import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 

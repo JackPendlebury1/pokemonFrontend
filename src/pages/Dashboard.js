@@ -26,7 +26,6 @@ import {
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { Link, useHistory } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { ErrorMessage } from '../components/ErrorMessage';
 
 function Dashboard() {

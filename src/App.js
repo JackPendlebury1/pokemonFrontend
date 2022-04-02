@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Routes } from './Routes'
 import {NavBar} from './components/NavBar'
 import { ChakraProvider, Box} from '@chakra-ui/react'
-import Cookies from 'js-cookie';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)

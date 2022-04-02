@@ -5,7 +5,6 @@ import {
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { ErrorMessage } from '../components/ErrorMessage';
 
 export default function SearchPokemon() {

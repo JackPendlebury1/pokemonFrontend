@@ -21,7 +21,6 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { ArrowBackIcon, StarIcon, SearchIcon } from '@chakra-ui/icons'
-import Cookies from 'js-cookie';
 import { UserCard } from '../components/UserCard';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
