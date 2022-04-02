@@ -16,7 +16,6 @@ import {
 } from '@chakra-ui/react';
 import { AiOutlineCamera } from "react-icons/ai";
 import { ErrorMessage } from "../components/ErrorMessage"
-import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form'
 
 export const AboutMe = ({user}) => {
@@ -38,7 +37,7 @@ export const AboutMe = ({user}) => {
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/image", {
             method: 'POST',
             headers: {
-                "Authorization": Cookies.get("login")
+                "Authorization": localStorage.getItem("login")
             },
             body: formData
         }
@@ -58,7 +57,7 @@ export const AboutMe = ({user}) => {
         const response = await fetch(process.env.REACT_APP_ENDPOINT + "/profile/edit", {
             method: 'POST',
             headers: {
-                "Authorization": Cookies.get("login")
+                "Authorization": localStorage.getItem("login")
             },
             body: JSON.stringify(values)
         }

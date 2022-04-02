@@ -10,7 +10,6 @@ import {
     useColorModeValue,
     Text,
 } from '@chakra-ui/react';
-import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom';
 
 export const UserCard = () => {
@@ -22,7 +21,7 @@ export const UserCard = () => {
             const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
                 method: 'GET',
                 headers: {
-                    "Authorization": Cookies.get("login")
+                    "Authorization": localStorage.getItem("login")
                 }
             })
             if (!response1.ok) {

@@ -58,7 +58,7 @@ function Dashboard() {
             const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
                 method: 'GET',
                 headers: {
-                    "Authorization": localStorage.getItem('login')
+                    "Authorization": localStorage.getItem("login")
                 }
             })
             if (!response1.ok) {
@@ -74,7 +74,7 @@ function Dashboard() {
 
     const favouritePokemon = async (pokemonIndex) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}users/favourites/${pokemonIndex}`,
-            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem('login') } });
+            { method: 'POST', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem("login") } });
         if (response2.ok) {
             onOpen()
             toggleShow2(true)
