@@ -36,10 +36,10 @@ const NavLink =({ children }) => (
   </Link>
 );
 
-export const NavBar = ({ isLoggedIn, user }) => {
+export const NavBar = (user) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [isAuth] = useAuth(false)
   const SignOut = () => {
     useAuth.logout()
     localStorage.removeItem("login")
@@ -73,7 +73,7 @@ export const NavBar = ({ isLoggedIn, user }) => {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
               {
-                isLoggedIn ?
+                isAuth ?
                   <Menu>
                     <MenuButton
                       as={Button}
