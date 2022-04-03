@@ -19,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import Cookies from 'js-cookie';
+import {useAuth} from './useAuth'
 
 const Links = ['Home', 'Read Me'];
 
@@ -39,10 +40,12 @@ const NavLink =({ children }) => (
 export const NavBar = ({ isLoggedIn, user }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  [login] = useAuth(false)
   const SignOut = () => {
+    logout
     Cookies.remove("login")
   }
-
+  
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>

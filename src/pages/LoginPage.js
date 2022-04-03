@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-
+import {useAuth} from '../components/useAuth'
 
 export default function SimpleCard() {
     const history = useHistory();
@@ -33,6 +33,7 @@ export default function SimpleCard() {
         register,
         formState: { isSubmitting },
       } = useForm()
+      [login] = useAuth(false)
 
     const onSubmit = async (values) => {
         formData.append('username', values.email);
@@ -42,6 +43,7 @@ export default function SimpleCard() {
             let token = await response.json();
             localStorage.setItem("login", token.token_type + " " + token.access_token);
             history.push("/dashboard/pokedex");
+            login
             window.location.reload();
         } else {
             onOpen()

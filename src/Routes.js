@@ -8,10 +8,13 @@ import {ReadMe} from './pages/ReadMe'
 import {AboutMe} from './pages/AboutMe'
 import { FavouritePokemon} from './pages/FavouritePokemon'
 import SearchPokemon from './pages/SearchPokemon'
+import useAuth from './components/useAuth';
+import ProtectedRoutes from './ProtectedRoutes'
 
 import { Switch ,Route } from 'react-router-dom';
 
 export const Routes = (user) => {
+    const [isAuth, login, logout] = useAuth(false)
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -19,11 +22,11 @@ export const Routes = (user) => {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegistrationPage} />
             <Route exact path="/Read Me" component={ReadMe} />
-            <Route exact path="/dashboard/profile" component={() => <AboutMe user={user}/>} />
-            <Route exact path="/dashboard/pokedex" component={Dashboard} />
-            <Route exact path="/dashboard/search/:index" component={SearchPokemon} />
-            <Route exact path="/dashboard/favourites" component={FavouritePokemon}/>
             <Route exact path='*' component={NotFound} />
+            <ProtectedRoutes path="/dashboard/profile" component={() => <AboutMe user={user}/>} auth={isAuth}/>
+            <ProtectedRoutes path="/dashboard/pokedex" component={Dashboard} auth={isAuth}/>
+            <ProtectedRoutes path="/dashboard/search/:index" component={SearchPokemon} auth={isAuth}/>
+            <ProtectedRoutes path="/dashboard/favourites" component={FavouritePokemon} auth={isAuth}/>
         </Switch>
     )
 }
