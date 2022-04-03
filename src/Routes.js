@@ -14,7 +14,7 @@ import ProtectedRoutes from './ProtectedRoutes'
 import { Switch ,Route } from 'react-router-dom';
 
 export const Routes = (user) => {
-    const [isAuth, login, logout] = useAuth(false)
+    const [isAuth] = useAuth(false)
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
