@@ -5,6 +5,7 @@ export default function useAuth(initialValue) {
 
     function login() {
         setTimeout(() => {
+            console.log("This ran")
             setIsAuth(true);
         }, 1000)
     }
