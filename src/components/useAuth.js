@@ -13,4 +13,5 @@ export default function useAuth(initialValue) {
             setIsAuth(false);
         }, 1000)
     }
+    return [isAuth, login, logout]
 }
