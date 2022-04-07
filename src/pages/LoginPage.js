@@ -34,7 +34,7 @@ export default function SimpleCard() {
         formState: { isSubmitting },
       } = useForm()
 
-    const [login] = useAuth(false);
+    const [isAuth ,login] = useAuth(false);
     const onSubmit = async (values) => {
         formData.append('username', values.email);
         formData.append('password', values.password);
