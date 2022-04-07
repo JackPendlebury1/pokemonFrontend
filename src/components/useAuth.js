@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function useAuth(initialValue) {
     const [isAuth, setIsAuth] = useState(initialValue);
@@ -6,7 +6,7 @@ export default function useAuth(initialValue) {
     function login() {
         setTimeout(() => {
             console.log("This ran inside login")
-            setIsAuth(true);
+            
         }, 1000)
     }
     function logout() {
