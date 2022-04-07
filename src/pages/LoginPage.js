@@ -33,7 +33,7 @@ export default function SimpleCard() {
         register,
         formState: { isSubmitting },
       } = useForm()
-    const [login] = useAuth(false)
+
     const onSubmit = async (values) => {
         formData.append('username', values.email);
         formData.append('password', values.password);
@@ -43,7 +43,7 @@ export default function SimpleCard() {
             localStorage.setItem("login", token.token_type + " " + token.access_token);
             history.push("/dashboard/pokedex");
             // window.location.reload();
-            login()
+            useAuth.login()
         } else {
             onOpen()
 
