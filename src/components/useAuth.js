@@ -1,18 +1,20 @@
-import { useState } from "react";
-
-export default function useAuth(initialValue) {
-    const [isAuth, setIsAuth] = useState(initialValue);
-
-    function login() {
-        setTimeout(() => {
-            console.log("This ran inside login")
-            setIsAuth(true);
-        }, 1000)
+class Auth {
+    constructor() {
+        this.authenticated = false; 
     }
-    function logout() {
-        setTimeout(() => {
-            setIsAuth(false);
-        }, 1000)
+
+    login(cb){
+        this.authenticated = true;
+        cb()
     }
-    return [isAuth, login, logout]
+
+    logout(cb){
+        this.authenticated = false;
+        cb()
+    }
+
+    isAuthenticated() {
+        return this.authenticated;
+    }
 }
+export default new Auth();
