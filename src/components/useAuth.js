@@ -1,16 +1,16 @@
 class Auth{
 
     login() {
-        sessionStorage.setItem('authenticated', true);
+        localStorage.setItem('authenticated', true);
         console.log("Login")
       }
     
       logout() {
-        sessionStorage.setItem('authenticated', false);
+        localStorage.setItem('authenticated', false);
       }
     
       isAuthenticated() {
-        return sessionStorage.getItem('authenticated');
+        return localStorage.getItem('authenticated');
       }
 }
    
