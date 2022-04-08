@@ -18,7 +18,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import useAuth from './useAuth'
+import auth from './useAuth'
 
 const Links = ['Home', 'Read Me'];
 
@@ -39,9 +39,8 @@ const NavLink =({ children }) => (
 export const NavBar = (user) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isAuth, logout] = useAuth(false)
   const SignOut = () => {
-    logout()
+    auth.logout()
     localStorage.removeItem("login")
   }
   
