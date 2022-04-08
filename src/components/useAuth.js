@@ -1,19 +1,17 @@
-class Auth {
-
-    authenticated = false;
+class Auth{
 
     login() {
-      this.authenticated = true;
-      console.log("Login")
-    }
-  
-    logout() {
-      this.authenticated = false;
-      console.log("Logout")
-    }
-  
-    isAuthenticated() {
-      return this.authenticated;
-    }
-  }
+        sessionStorage.setItem('authenticated', true);
+        console.log("Login")
+      }
+    
+      logout() {
+        sessionStorage.setItem('authenticated', false);
+      }
+    
+      isAuthenticated() {
+        return sessionStorage.getItem('authenticated');
+      }
+}
+   
 export default new Auth();
