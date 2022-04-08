@@ -46,7 +46,6 @@ export default function SimpleCard() {
             auth.login()
         } else {
             onOpen()
-
         }
     }
 

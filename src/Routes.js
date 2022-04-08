@@ -20,10 +20,10 @@ export const Routes = (user) => {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegistrationPage} />
             <Route exact path="/Read Me" component={ReadMe} />
-            <ProtectedRoutes path="/dashboard/profile" component={() => <AboutMe user={user}/>}/>
-            <ProtectedRoutes path="/dashboard/pokedex" component={Dashboard}/>
-            <ProtectedRoutes path="/dashboard/search/:index" component={SearchPokemon}/>
-            <ProtectedRoutes path="/dashboard/favourites" component={FavouritePokemon}/>
+            <ProtectedRoutes exact path="/dashboard/profile" component={() => <AboutMe user={user}/>}/>
+            <ProtectedRoutes exact path="/dashboard/pokedex" component={Dashboard}/>
+            <ProtectedRoutes exact path="/dashboard/search/:index" component={SearchPokemon}/>
+            <ProtectedRoutes exact path="/dashboard/favourites" component={FavouritePokemon}/>
             <Route exact path='*' component={NotFound} />
         </Switch>
     )
