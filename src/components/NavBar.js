@@ -72,7 +72,7 @@ export const NavBar = (user) => {
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
               {
-                isAuth ?
+                auth.isAuthenticated ?
                   <Menu>
                     <MenuButton
                       as={Button}
