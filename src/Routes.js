@@ -5,8 +5,8 @@ import RegistrationPage from './pages/RegistrationPage';
 import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound'
 import {ReadMe} from './pages/ReadMe'
-import {AboutMe} from './pages/AboutMe'
-import { FavouritePokemon} from './pages/FavouritePokemon'
+import AboutMe from './pages/AboutMe'
+import FavouritePokemon from './pages/FavouritePokemon'
 import SearchPokemon from './pages/SearchPokemon'
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { Switch ,Route } from 'react-router-dom';

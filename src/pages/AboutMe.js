@@ -18,7 +18,7 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { ErrorMessage } from "../components/ErrorMessage"
 import { useForm } from 'react-hook-form'
 
-export const AboutMe = ({user}) => {
+function AboutMe({user}) {
 
     const [selectedFile, setSelectedFile] = useState(null);
     const {
@@ -205,3 +205,4 @@ export const AboutMe = ({user}) => {
     );
 }
 
+export default AboutMe

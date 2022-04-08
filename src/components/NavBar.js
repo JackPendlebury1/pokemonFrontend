@@ -36,12 +36,12 @@ const NavLink =({ children }) => (
   </Link>
 );
 
-export const NavBar = (user) => {
+function NavBar(user){
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const SignOut = () => {
     auth.logout();
-    localStorage.removeItem("login")
   }
   
   return (
@@ -139,3 +139,4 @@ export const NavBar = (user) => {
     </>
   );
 }
+export default NavBar

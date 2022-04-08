@@ -40,7 +40,6 @@ function Dashboard() {
     const [pokemonStats, setPokemonStats] = useState([])
 
     const fetchDataAll = async (url) => {
-
         const response = await fetch(url, {
             method: 'GET',
         })
@@ -54,21 +53,6 @@ function Dashboard() {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
-                method: 'GET',
-                headers: {
-                    "Authorization": localStorage.getItem("login")
-                }
-            })
-            if (!response1.ok) {
-                history.push("/");
-            } else {
-                let data = await response1.json();
-                localStorage.setItem("id", data.id);
-            }
-        }
-        fetchData();
         fetchDataAll(url);
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
@@ -129,9 +113,9 @@ function Dashboard() {
                     <ModalCloseButton />
                     <ModalBody>
                         {show1 &&
-                        
+
                             <Flex justify={'center'}>
-                               
+
                                 <Grid h='500px' templateRows='repeat(2, 1fr)' templateColumns='repeat(5, 1fr)'>
                                     <GridItem colSpan={2} >
                                         <Container>

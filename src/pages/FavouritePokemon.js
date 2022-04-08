@@ -24,7 +24,7 @@ import { ArrowBackIcon, StarIcon, SearchIcon } from '@chakra-ui/icons'
 import { UserCard } from '../components/UserCard';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-export const FavouritePokemon = () => {
+function FavouritePokemon() {
 
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -206,3 +206,4 @@ export const FavouritePokemon = () => {
         </>
     );
 }
+export default FavouritePokemon

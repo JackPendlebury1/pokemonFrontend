@@ -6,6 +6,7 @@ class Auth{
       }
     
       logout() {
+        localStorage.removeItem("login")
         localStorage.setItem('authenticated', false);
       }
     
