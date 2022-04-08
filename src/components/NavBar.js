@@ -40,7 +40,7 @@ export const NavBar = (user) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const SignOut = () => {
-    auth.logout()
+    auth.logout();
     localStorage.removeItem("login")
   }
   
