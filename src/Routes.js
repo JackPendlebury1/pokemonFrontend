@@ -8,8 +8,7 @@ import {ReadMe} from './pages/ReadMe'
 import {AboutMe} from './pages/AboutMe'
 import { FavouritePokemon} from './pages/FavouritePokemon'
 import SearchPokemon from './pages/SearchPokemon'
-import ProtectedRoutes from './ProtectedRoutes'
-
+import { ProtectedRoutes } from "./ProtectedRoutes";
 import { Switch ,Route } from 'react-router-dom';
 
 export const Routes = (user) => {
