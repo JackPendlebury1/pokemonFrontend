@@ -44,6 +44,7 @@ export default function SimpleCard() {
             localStorage.setItem("login", token.token_type + " " + token.access_token);
             history.push("/dashboard/pokedex");
             // window.location.reload();
+            console.log(isAuth)
             login()
         } else {
             onOpen()
