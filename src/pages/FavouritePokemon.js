@@ -29,8 +29,8 @@ function FavouritePokemon() {
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    // let favouritesList = localStorage.getItem("favourites")
-    let favouritesList
+    let favouritesList = localStorage.getItem("favourites")
+    // let favouritesList
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
             method: 'POST',
@@ -46,8 +46,8 @@ function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        console.log(favouritesList)
-        favouritesList?.forEach(async e => {
+        console.log(JSON.parse(favouritesList))
+        JSON.parse(favouritesList)?.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
@@ -61,24 +61,24 @@ function FavouritePokemon() {
         });
     }
 
-    const fetchFavourites = async () => {
-        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${localStorage.getItem("id")}/`, {
-            method: 'GET',
-            headers: {
-                "Authorization": localStorage.getItem("login")
-            }
-        });
-        if (response.status === 200) {
-            let data = await response.json();
-            favouritesList = data
-            fetchDataAll();
-        } else {
-            console.error("Cannot Find Favourites")
-        }
-    }
+    // const fetchFavourites = async () => {
+    //     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${localStorage.getItem("id")}/`, {
+    //         method: 'GET',
+    //         headers: {
+    //             "Authorization": localStorage.getItem("login")
+    //         }
+    //     });
+    //     if (response.status === 200) {
+    //         let data = await response.json();
+    //         favouritesList = data
+    //         fetchDataAll();
+    //     } else {
+    //         console.error("Cannot Find Favourites")
+    //     }
+    // }
 
     useEffect(() => {
-        fetchFavourites();
+        // fetchFavourites();
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
