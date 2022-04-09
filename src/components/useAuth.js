@@ -10,16 +10,19 @@ class Auth extends React.Component{
           localStorage.setItem("id", data.id);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", data)
+          localStorage.setItem("favourites", data.favourites)
         }
       }
       fetchData();
-      cb(); 
+      cb();
+      this.window.location.reload();
       }
     
       logout(cb) {
         localStorage.removeItem("login")
         localStorage.removeItem("id");
         localStorage.removeItem("user");
+        localStorage.removeItem("favourites");
         localStorage.setItem("authenticated", false);
         cb()
       }
