@@ -25,7 +25,7 @@ import {
     Progress,
 } from '@chakra-ui/react';
 import { ArrowBackIcon, StarIcon, ArrowForwardIcon } from '@chakra-ui/icons'
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ErrorMessage } from '../components/ErrorMessage';
 
 function Dashboard() {
@@ -33,7 +33,6 @@ function Dashboard() {
     const [AllData, setAllData] = useState([])
     const url = "https://pokeapi.co/api/v2/pokemon?limit=" + 100 + "&offset=" + 0
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const history = useHistory();
     const [show, toggleShow] = useState(false);
     const [show1, toggleShow1] = useState(false);
     const [show2, toggleShow2] = useState(false);
