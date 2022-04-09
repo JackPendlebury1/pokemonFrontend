@@ -20,6 +20,7 @@ class Auth{
       logout() {
         localStorage.removeItem("login")
         localStorage.removeItem("id");
+        localStorage.removeItem("user");
         localStorage.setItem("authenticated", false);
       }
     
