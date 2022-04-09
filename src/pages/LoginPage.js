@@ -41,7 +41,7 @@ export default function SimpleCard(props) {
             auth.login(() => {
                 props.history.push("/dashboard/pokedex")
             })
-
+            
         } else {
             onOpen()
         }

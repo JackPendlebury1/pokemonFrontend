@@ -42,9 +42,9 @@ function NavBar(props){
   let user = localStorage.getItem("user")
 
   const SignOut = () => {
-    auth.login(() => {
-      props.history.push("/")
-    })
+    auth.logout(() => {
+      props.history.push("/");
+    });
   }
   
   return (
