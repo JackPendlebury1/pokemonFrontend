@@ -18,7 +18,8 @@ import { AiOutlineCamera } from "react-icons/ai";
 import { ErrorMessage } from "../components/ErrorMessage"
 import { useForm } from 'react-hook-form'
 
-function AboutMe({user}) {
+function AboutMe() {
+    let user = localStorage.getItem("user")
 
     const [selectedFile, setSelectedFile] = useState();
     const {
