@@ -29,8 +29,8 @@ function FavouritePokemon() {
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    let favouritesList = localStorage.getItem("favourites")
-
+    // let favouritesList = localStorage.getItem("favourites")
+    let favouritesList
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
             method: 'POST',
@@ -61,24 +61,24 @@ function FavouritePokemon() {
         });
     }
 
-    // const fetchFavourites = async () => {
-    //     const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${localStorage.getItem("id")}/`, {
-    //         method: 'GET',
-    //         headers: {
-    //             "Authorization": localStorage.getItem("login")
-    //         }
-    //     });
-    //     if (response.status === 200) {
-    //         let data = await response.json();
-    //         favouritesList = data
-    //         fetchDataAll();
-    //     } else {
-    //         console.error("Cannot Find Favourites")
-    //     }
-    // }
+    const fetchFavourites = async () => {
+        const response = await fetch(`${process.env.REACT_APP_ENDPOINT}favourites/${localStorage.getItem("id")}/`, {
+            method: 'GET',
+            headers: {
+                "Authorization": localStorage.getItem("login")
+            }
+        });
+        if (response.status === 200) {
+            let data = await response.json();
+            favouritesList = data
+            fetchDataAll();
+        } else {
+            console.error("Cannot Find Favourites")
+        }
+    }
 
     useEffect(() => {
-        // fetchFavourites();
+        fetchFavourites();
         fetchDataAll();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps  
 
