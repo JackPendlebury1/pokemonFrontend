@@ -1,7 +1,7 @@
 import React from 'react';
 class Auth extends React.Component{
     
-    login() {
+    login(cb) {
       const fetchData = async () => {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
           { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem("login") } });
@@ -12,14 +12,16 @@ class Auth extends React.Component{
           localStorage.setItem("user", data)
         }
       }
-      fetchData()   
+      fetchData();
+      cb(); 
       }
     
-      logout() {
+      logout(cb) {
         localStorage.removeItem("login")
         localStorage.removeItem("id");
         localStorage.removeItem("user");
         localStorage.setItem("authenticated", false);
+        cb()
       }
     
       isAuthenticated() {

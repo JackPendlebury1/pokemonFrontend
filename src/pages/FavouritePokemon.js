@@ -47,7 +47,8 @@ function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        favouritesList.forEach(async e => {
+        console.log(favouritesList)
+        favouritesList?.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
