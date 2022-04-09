@@ -20,12 +20,10 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import auth from '../components/useAuth'
 
 export default function SimpleCard() {
-    const history = useHistory();
     const formData = new FormData();
     const { isOpen, onOpen, onClose } = useDisclosure()
     const {
@@ -42,9 +40,6 @@ export default function SimpleCard() {
             let token = await response.json();
             localStorage.setItem("login", token.token_type + " " + token.access_token);
             auth.login()
-            history.push("/dashboard/pokedex");
-            // window.location.reload();
-            
         } else {
             onOpen()
         }

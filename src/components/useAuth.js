@@ -1,4 +1,5 @@
 class Auth{
+    
 
     login() {
       const fetchData = async () => {
@@ -9,6 +10,8 @@ class Auth{
           localStorage.setItem("id", data.id);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", data)
+          this.props.history.push("/dashboard/pokedex");
+          window.location.reload();
         }
       }
       fetchData()   
