@@ -1,6 +1,6 @@
-class Auth{
+import React from 'react';
+class Auth extends React.Component{
     
-
     login() {
       const fetchData = async () => {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
