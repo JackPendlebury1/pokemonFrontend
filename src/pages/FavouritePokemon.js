@@ -46,7 +46,6 @@ function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        console.log(JSON.parse(favouritesList))
         JSON.parse(favouritesList)?.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
@@ -90,7 +89,7 @@ function FavouritePokemon() {
         items.splice(result.destination.index, 0, reorderedItem);
         setWatchedData(items);
 
-        localStorage.setItem("favourites", JSON.stringify(items));
+        // localStorage.setItem("favourites", JSON.stringify(items));
     }
 
     return (

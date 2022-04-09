@@ -40,8 +40,9 @@ export default function SimpleCard(props) {
             localStorage.setItem("login", token.token_type + " " + token.access_token);
             auth.login(() => {
                 props.history.push("/dashboard/pokedex")
+                console.log("push")
             })
-            
+
         } else {
             onOpen()
         }
