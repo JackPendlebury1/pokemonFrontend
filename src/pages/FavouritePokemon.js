@@ -29,8 +29,7 @@ function FavouritePokemon() {
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    let temp = localStorage.getItem("user")
-    let favouritesList = temp.favourites
+    let favouritesList = localStorage.getItem("favourites")
 
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
