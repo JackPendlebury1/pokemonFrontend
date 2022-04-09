@@ -29,8 +29,8 @@ function FavouritePokemon() {
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    let favouritesList = localStorage.getItem("favourites")
-    // let favouritesList
+    let favouritesList = JSON.parse(localStorage.getItem("user"))
+    
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
             method: 'POST',
@@ -46,7 +46,7 @@ function FavouritePokemon() {
     }
 
     const fetchDataAll = async () => {
-        JSON.parse(favouritesList)?.forEach(async e => {
+        favouritesList.favourites?.forEach(async e => {
             const response1 = await fetch("https://pokeapi.co/api/v2/pokemon/" + e.favourite_index, {
                 method: 'GET',
             })
