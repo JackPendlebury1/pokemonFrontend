@@ -9,13 +9,13 @@ class Auth extends React.Component{
           let data = await response.json();
           localStorage.setItem("id", data.id);
           localStorage.setItem("authenticated", true);
-          localStorage.setItem("user", data)
-          localStorage.setItem("favourites", data.favourites)
+          localStorage.setItem("user", JSON.stringify(data))
+          localStorage.setItem("favourites", JSON.stringify(data.favourites))
         }
       }
       fetchData();
       cb();
-      this.window.location.reload();
+      location.reload();
       }
     
       logout(cb) {
