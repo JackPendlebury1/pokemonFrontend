@@ -14,8 +14,8 @@ class Auth extends React.Component{
         }
       }
       fetchData();
-      window.location.reload();
       cb();
+      window.location.reload();
       }
     
       logout(cb) {
