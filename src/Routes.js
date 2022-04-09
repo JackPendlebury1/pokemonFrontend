@@ -11,7 +11,7 @@ import SearchPokemon from './pages/SearchPokemon'
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { Switch ,Route } from 'react-router-dom';
 
-export const Routes = (user) => {
+export const Routes = () => {
     return (
         <Switch>
             <Route exact path="/" component={LandingPage} />
@@ -19,7 +19,7 @@ export const Routes = (user) => {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/signup" component={RegistrationPage} />
             <Route exact path="/Read Me" component={ReadMe} />
-            <ProtectedRoutes exact path="/dashboard/profile" component={() => <AboutMe user={user}/>}/>
+            <ProtectedRoutes exact path="/dashboard/profile" component={() => <AboutMe/>}/>
             <ProtectedRoutes exact path="/dashboard/pokedex" component={Dashboard}/>
             <ProtectedRoutes exact path="/dashboard/search/:index" component={SearchPokemon}/>
             <ProtectedRoutes exact path="/dashboard/favourites" component={FavouritePokemon}/>

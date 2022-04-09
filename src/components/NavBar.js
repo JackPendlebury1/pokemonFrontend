@@ -36,9 +36,10 @@ const NavLink =({ children }) => (
   </Link>
 );
 
-function NavBar(user){
+function NavBar(){
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  let user = localStorage.getItem("user")
 
   const SignOut = () => {
     auth.logout();

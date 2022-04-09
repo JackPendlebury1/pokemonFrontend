@@ -6,7 +6,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [user, setUser] = useState([])
 
   useEffect(() => {
     
@@ -16,8 +15,8 @@ function App() {
   return (
     <Router>
       <ChakraProvider>
-        <NavBar isLoggedIn={isLoggedIn} user={user} />
-        <Routes mt='5' user={user} />
+        <NavBar />
+        <Routes mt='5' />
       </ChakraProvider>
     </Router>
   );

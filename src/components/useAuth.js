@@ -6,10 +6,9 @@ class Auth{
           { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem("login") } });
         if (response.ok) {
           let data = await response.json();
-          setUser(data)
           localStorage.setItem("id", data.id);
           localStorage.setItem("authenticated", true);
-          localStorage.setItem("favourites", data.favourites)
+          localStorage.setItem("user", data)
         }
       }
       fetchData()   
@@ -17,7 +16,7 @@ class Auth{
     
       logout() {
         localStorage.removeItem("login")
-        localStorage.removeItem("id", data.id);
+        localStorage.removeItem("id");
         localStorage.setItem("authenticated", false);
       }
     

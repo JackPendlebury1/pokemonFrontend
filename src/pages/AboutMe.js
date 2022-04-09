@@ -20,7 +20,7 @@ import { useForm } from 'react-hook-form'
 
 function AboutMe({user}) {
 
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState();
     const {
         handleSubmit,
         register,
