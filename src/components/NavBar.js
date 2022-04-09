@@ -22,7 +22,7 @@ import auth from './useAuth'
 
 const Links = ['Home', 'Read Me'];
 
-const NavLink =({ children }) => (
+const NavLink = ({ children }) => (
   <Link
     px={2}
     py={1}
@@ -36,7 +36,7 @@ const NavLink =({ children }) => (
   </Link>
 );
 
-function NavBar(props){
+function NavBar(props) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   let user = localStorage.getItem("user")
@@ -46,7 +46,7 @@ function NavBar(props){
       props.history.push("/");
     });
   }
-  
+
   return (
     <>
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>

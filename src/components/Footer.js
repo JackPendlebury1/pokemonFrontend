@@ -50,7 +50,7 @@ const SocialButton = ({
 
 export default function Footer() {
   return (
-    <Box position="relative" bottom="0" left="0" right="0" width="100%"  alignItems='center'
+    <Box position="relative" bottom="0" left="0" right="0" width="100%" alignItems='center'
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}>
       <Container as={Stack} maxW={'6xl'} py={10} centerContent>

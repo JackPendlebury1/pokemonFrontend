@@ -105,7 +105,7 @@ function AboutMe() {
 
                                 <Avatar size="xl" src={`data:image/jpeg;base64, ${user.userImage}`}>
                                     <input id="fileButton" accept="image/*" onChange={(e) => setSelectedFile(e.target.files[0])} type="file" hidden />
-                                    <AvatarBadge onClick={()=> document.getElementById("fileButton").click() && uploadButton()}
+                                    <AvatarBadge onClick={() => document.getElementById("fileButton").click() && uploadButton()}
                                         as={IconButton}
                                         size="sm"
                                         rounded="full"
@@ -174,7 +174,7 @@ function AboutMe() {
                                 type="password"
                             />
                         </FormControl>
-                        <Stack p={10}spacing={6} direction={['column', 'row']}>
+                        <Stack p={10} spacing={6} direction={['column', 'row']}>
                             <Button
                                 as={'a'}
                                 href={'/dashboard/pokedex'}

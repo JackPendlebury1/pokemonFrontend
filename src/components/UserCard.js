@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {
     Heading,
     Avatar,
@@ -10,29 +10,29 @@ import {
     useColorModeValue,
     Text,
 } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 export const UserCard = () => {
-    const [profile, setProfile] = useState([])
-    const history = useHistory();
+    // const history = useHistory();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
-                method: 'GET',
-                headers: {
-                    "Authorization": localStorage.getItem("login")
-                }
-            })
-            if (!response1.ok) {
-                history.push("/");
-            } else {
-                let data = await response1.json();
-                setProfile(data)
-            }
-        }
-        fetchData();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps  
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const response1 = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`, {
+    //             method: 'GET',
+    //             headers: {
+    //                 "Authorization": localStorage.getItem("login")
+    //             }
+    //         })
+    //         if (!response1.ok) {
+    //             history.push("/");
+    //         } else {
+    //             let data = await response1.json();
+    //             setProfile(data)
+    //         }
+    //     }
+    //     fetchData();
+    // }, []); // eslint-disable-line react-hooks/exhaustive-deps  
+    let profile = JSON.parse(localStorage.getItem("user"))
 
     return (
         <Center py={6}>
