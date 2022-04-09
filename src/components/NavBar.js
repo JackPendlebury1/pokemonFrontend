@@ -72,7 +72,7 @@ function NavBar(user){
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
               {
-                auth.isAuthenticated() ?
+                auth.isAuthenticated() === "true" ?
                   <Menu>
                     <MenuButton
                       as={Button}
