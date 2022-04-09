@@ -1,7 +1,9 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 class Auth extends React.Component{
     
     login() {
+      let history = useHistory();
       const fetchData = async () => {
         const response = await fetch(`${process.env.REACT_APP_ENDPOINT}profile`,
           { method: 'GET', headers: { 'Content-Type': 'application/json', "Authorization": localStorage.getItem("login") } });
@@ -10,7 +12,7 @@ class Auth extends React.Component{
           localStorage.setItem("id", data.id);
           localStorage.setItem("authenticated", true);
           localStorage.setItem("user", data)
-          this.props.history.push("/dashboard/pokedex");
+          history.push("/dashboard/pokedex");
           window.location.reload();
         }
       }
