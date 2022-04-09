@@ -90,7 +90,7 @@ function FavouritePokemon() {
         items.splice(result.destination.index, 0, reorderedItem);
 
         setWatchedData(items);
-        localStorage.setItem("favourites", items);
+        localStorage.setItem("favourites", JSON.stringify(items));
     }
 
     return (
