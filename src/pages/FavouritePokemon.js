@@ -29,7 +29,7 @@ function FavouritePokemon() {
     const [WatchedData, setWatchedData] = useState([]);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [show, toggleShow] = useState(false);
-    let favouritesList
+    let favouritesList = localStorage.getItem("favourites")
 
     const unfavourite = async (index) => {
         const response2 = await fetch(`${process.env.REACT_APP_ENDPOINT}delete/favourites/${index}/`, {
@@ -43,7 +43,6 @@ function FavouritePokemon() {
         } else {
             console.error("Cannot Find Favourites")
         }
-
     }
 
     const fetchDataAll = async () => {
@@ -75,7 +74,6 @@ function FavouritePokemon() {
         } else {
             console.error("Cannot Find Favourites")
         }
-
     }
 
     useEffect(() => {
@@ -91,6 +89,7 @@ function FavouritePokemon() {
         items.splice(result.destination.index, 0, reorderedItem);
 
         setWatchedData(items);
+        localStorage.setItem("favourites", items);
     }
 
     return (
